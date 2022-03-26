@@ -2,7 +2,7 @@ package cryptoTrader.tradeResult;
 
 import java.util.*;
 
-public class TradeResultList {
+public class TradeResultList implements TradeResultListInterface {
 	
 	private static TradeResultList instance = null;
 	List<TradeResult> resultsList;
