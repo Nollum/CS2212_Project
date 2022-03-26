@@ -205,6 +205,9 @@ public class MainUI extends JFrame implements ActionListener {
 					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
 	        }
 			stats.removeAll();
+			
+			// initiate trade through trade handler somewhere here
+			
 			DataVisualizationCreator creator = new DataVisualizationCreator();
 			creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
