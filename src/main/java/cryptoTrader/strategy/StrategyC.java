@@ -1,34 +1,33 @@
 package cryptoTrader.strategy;
 
-// import org.apache.commons.lang3.ArrayUtils; --> figure out how to do this to find array element index
-
 import cryptoTrader.tradeResult.TradeResult;
 
-public class StrategyA implements StrategyInterface {
-	
-	String strategy = getStrategyName();
+public class StrategyC implements StrategyInterface {
+
 	String trader;
+	String strategy;
 	String coinTraded;
 	String action = null;
 	int quantity;
 	double price;
-
+	
 	@Override
 	public TradeResult performTrade(String trader, String[] coinList, double[] coinPrices) {
-		// if the price of BTC is less than or equal to $50,000
-		// and the price of ADA is more than $2
-		// then buy 10 ADA coins
+
+		// if price of ada is greater than 3
+		// and price of btc is less than 50
+		// sell 50 btc
 		
 		this.trader = trader;
 		
 		double btcPrice = 4.00; // replace with value from coinPrices
 		double adaPrice = 30.34; // replace with value from coinPrices
 		
-		if ((btcPrice < 50000) && (adaPrice > 2)) {
-			coinTraded = "ADA";
-			action = "Buy";
-			quantity = 10;
-			price = quantity * adaPrice;
+		if ((adaPrice > 3) && (btcPrice < 50)) {
+			coinTraded = "BTC";
+			action = "Sell";
+			quantity = 50;
+			price = quantity * btcPrice;
 		}
 		else {
 			coinTraded = "None";
@@ -42,7 +41,7 @@ public class StrategyA implements StrategyInterface {
 
 	@Override
 	public String getStrategyName() {
-		return "Strategy-A";
+		return "Strategy-C";
 	}
 
 }
