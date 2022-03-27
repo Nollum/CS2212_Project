@@ -1,4 +1,5 @@
 package cryptoTrader.tradeResult;
+import java.util.*;
 
 public class TradeResult {
 
@@ -7,11 +8,11 @@ public class TradeResult {
 	String coinTraded;
 	String action;
 	int quantity;
-	float price;
-	java.util.Date date;
+	double price;
+	Date date;
 	
 	public TradeResult(String trader, String strategy, String coinTraded, 
-			String action, int quantity, float price) 
+			String action, int quantity, double price) 
 	{
 		this.trader = trader;
 		this.strategy = strategy;
@@ -19,6 +20,35 @@ public class TradeResult {
 		this.action = action;
 		this.quantity = quantity;
 		this.price = price;
+		date = new Date();
+	}
+	
+	public String getTraderName() {
+		return trader;
+	}
+	
+	public String getStrategyName() {
+		return strategy;
+	}
+	
+	public String getCoinTraded() {
+		return coinTraded;
+	}
+	
+	public String getAction() {
+		return action;
+	}
+	
+	public String getQuantity() {
+		return Integer.toString(quantity);
+	}
+
+	public String getPrice() {
+		return Double.toString(price);
+	}
+	
+	public String getDate() {
+		return date.toString();
 	}
 
 }
