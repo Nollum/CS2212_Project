@@ -1,17 +1,33 @@
 package cryptoTrader.strategy;
 
+import java.util.List;
+
 // import org.apache.commons.lang3.ArrayUtils; --> figure out how to do this to find array element index
 
 import cryptoTrader.tradeResult.TradeResult;
+import cryptoTrader.tradeResult.TradeResultList;
 
 public class StrategyA implements StrategyInterface {
 	
-	String strategy = getStrategyName();
+	private static StrategyA instance = null;
+
+	String strategy;
 	String trader;
 	String coinTraded;
 	String action = null;
 	int quantity;
 	double price;
+	
+	public static StrategyA getInstance() {
+		if (instance == null)
+			instance = new StrategyA();
+
+		return instance;
+	}
+	
+	private StrategyA () {
+		strategy = getStrategyName();
+	}
 
 	@Override
 	public TradeResult performTrade(String trader, String[] coinList, double[] coinPrices) {

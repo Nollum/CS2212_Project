@@ -5,13 +5,13 @@ public class StrategyFactory {
 	public StrategyInterface createStrategy(String strategyName) {
 		
 		if (strategyName == "Strategy-A") {
-			return new StrategyA();
+			return StrategyA.getInstance();
 		}
 		else if (strategyName == "Strategy-B"){
-			return new StrategyB();
+			return StrategyB.getInstance();
 		}
 		else if (strategyName == "Strategy-A") {
-			return new StrategyC();
+			return StrategyC.getInstance();
 		}
 		else {
 			return null;

@@ -4,12 +4,25 @@ import cryptoTrader.tradeResult.TradeResult;
 
 public class StrategyC implements StrategyInterface {
 
+	private static StrategyC instance = null;
+
 	String trader;
 	String strategy;
 	String coinTraded;
 	String action = null;
 	int quantity;
 	double price;
+	
+	public static StrategyC getInstance() {
+		if (instance == null)
+			instance = new StrategyC();
+		
+		return instance;
+	}
+
+	private StrategyC() {
+		strategy = getStrategyName();
+	}
 	
 	@Override
 	public TradeResult performTrade(String trader, String[] coinList, double[] coinPrices) {

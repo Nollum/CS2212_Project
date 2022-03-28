@@ -3,6 +3,8 @@ package cryptoTrader.strategy;
 import cryptoTrader.tradeResult.TradeResult;
 
 public class StrategyB implements StrategyInterface {
+	
+	private static StrategyB instance = null;
 
 	String trader;
 	String strategy;
@@ -10,6 +12,17 @@ public class StrategyB implements StrategyInterface {
 	String action = null;
 	int quantity;
 	double price;
+	
+	public static StrategyB getInstance() {
+		if (instance == null)
+			instance = new StrategyB();
+		
+		return instance;
+	}
+	
+	private StrategyB() {
+		strategy = getStrategyName();
+	}
 	
 	@Override
 	public TradeResult performTrade(String trader, String[] coinList, double[] coinPrices) {
