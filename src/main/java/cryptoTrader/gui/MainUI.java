@@ -28,7 +28,10 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import cryptoTrader.tradeHandling.TradeHandler;
 import cryptoTrader.utils.DataVisualizationCreator;
+
+import java.util.ArrayList;
 
 public class MainUI extends JFrame implements ActionListener {
 	/**
@@ -181,7 +184,11 @@ public class MainUI extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		String command = e.getActionCommand();
+		ArrayList<String> brokers = new ArrayList<String>();
+		ArrayList<String[]> coins = new ArrayList<String[]>();
+		ArrayList<String> strategies = new ArrayList<String>();
 		if ("refresh".equals(command)) {
 			for (int count = 0; count < dtm.getRowCount(); count++){
 					Object traderObject = dtm.getValueAt(count, 0);
@@ -202,14 +209,18 @@ public class MainUI extends JFrame implements ActionListener {
 						return;
 					}
 					String strategyName = strategyObject.toString();
+					
 					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+					brokers.add(traderName);
+					coins.add(coinNames);
+					strategies.add(strategyName);
+					
 	        }
+			
+			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
 			stats.removeAll();
-			
-			// initiate trade through trade handler somewhere here
-			
-			DataVisualizationCreator creator = new DataVisualizationCreator();
-			creator.createCharts();
+//			DataVisualizationCreator creator = new DataVisualizationCreator();
+//			creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
 			dtm.addRow(new String[3]);
 		} else if ("remTableRow".equals(command)) {
