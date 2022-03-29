@@ -8,7 +8,7 @@ import cryptoTrader.strategy.StrategyInterface;
  * @authors Hanniya Zohdi, Rustam Mamedov, Shruthi Sundararaman
  */
 
-public class TradingBroker implements TradingBrokerInterface{
+public class TradingBroker{
 	
 	private String brokerName;
 	private String[] coinList;
@@ -74,14 +74,6 @@ public class TradingBroker implements TradingBrokerInterface{
 	public void setStrategy(StrategyInterface strategy) {
 		this.strategy = strategy;
 	}
-
-	
-	@Override
-	public void addBroker(TradingBroker broker) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	
 	
 
