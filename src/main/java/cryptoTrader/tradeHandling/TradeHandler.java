@@ -30,9 +30,19 @@ public class TradeHandler {
 	}
 	
 	
+	
+	
 	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coins, ArrayList<String> strategies) {
 //		System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
-		
+		// UPDATE BROKERS
+			// ADD or REMOVE or EDIT brokers
+				// IF ADDING A BROKER, create broker and attach strategy
+				// EDIT and CHANGED STRATEGY - ATTACH NEW STRATEGY (STRATEGY FACTORY)
+		// VALIDATE CRYPTO LIST (AvailableCryptoList)
+		// CREATE A MAP FOR COIN PRICES (CoinName -> Price)
+		// ITERATE OVER THE UPDATED BROKER LIST
+			// tradeResult = BROKER.performTrade()
+			// tradeResultList.add(tradeResult)
 	}
 	
 	private double fetchCoinData(String list) {
