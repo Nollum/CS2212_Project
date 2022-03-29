@@ -111,7 +111,6 @@ public class MainUI extends JFrame implements ActionListener {
 		trade.addActionListener(this);
 
 
-
 		JPanel south = new JPanel();
 		
 		south.add(trade);
@@ -211,6 +210,7 @@ public class MainUI extends JFrame implements ActionListener {
 					String strategyName = strategyObject.toString();
 					
 					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+					// if traderName in brokers, do not add
 					brokers.add(traderName);
 					coins.add(coinNames);
 					strategies.add(strategyName);

@@ -21,9 +21,7 @@ public class TradeHandler {
 	}
 	
 	private TradeHandler() {
-		// Instantiate a DataFetcher 
-		// CHANGE TO SINGLETON?
-		this.dataFetcher = new DataFetcher();
+		this.dataFetcher = DataFetcher.getInstance();
 		this.tradingBrokerList = TradingBrokerList.getInstance();
 		this.tradeResultList = TradeResultList.getInstance();
 		// Debug message
