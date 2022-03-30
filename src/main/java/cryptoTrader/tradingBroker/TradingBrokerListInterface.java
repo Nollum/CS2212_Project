@@ -1,6 +1,6 @@
 package cryptoTrader.tradingBroker;
 
-public interface TradingBrokerInterface {
+public interface TradingBrokerListInterface {
 
 	public void addBroker(TradingBroker broker);
 	

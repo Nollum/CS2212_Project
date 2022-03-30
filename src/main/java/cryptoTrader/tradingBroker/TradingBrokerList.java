@@ -2,10 +2,10 @@ package cryptoTrader.tradingBroker;
 import java.util.*;
 
 
-public class TradingBrokerList implements TradingBrokerInterface {
+public class TradingBrokerList implements TradingBrokerListInterface {
 	
 	private static TradingBrokerList instance = null;
-	List<TradingBroker> brokerList;
+	private static ArrayList brokerList;
 	
 	public static TradingBrokerList getInstance() {
 		if (instance == null)
@@ -15,7 +15,11 @@ public class TradingBrokerList implements TradingBrokerInterface {
 	}
 	
 	private TradingBrokerList() {
-		brokerList = new LinkedList<TradingBroker>();
+		brokerList = new ArrayList<TradingBroker>();
+	}
+	
+	public ArrayList<TradingBroker> getBrokers() {
+		return brokerList;
 	}
 	
 	@Override
