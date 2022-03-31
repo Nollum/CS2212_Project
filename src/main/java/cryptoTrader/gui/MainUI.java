@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -180,6 +181,19 @@ public class MainUI extends JFrame implements ActionListener {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+	/**
+	 * Notifies the user that duplicate Trading Broker Names were
+	 * added to the table.
+	 * @param duplicates the set of duplicate trader names
+	 */
+	public void duplicateError(HashSet<String> duplicates) {
+		for (String duplicate : duplicates) {
+			JOptionPane.showMessageDialog(this, "Trading broker with name " + duplicate 
+					+ " was not added. Please ensure that trading broker names are unique." );
+		}
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -209,12 +223,18 @@ public class MainUI extends JFrame implements ActionListener {
 					}
 					String strategyName = strategyObject.toString();
 					
-					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
-					// if traderName in brokers, do not add
+//					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+//					if (!brokers.contains(traderName)) {
+//						brokers.add(traderName);
+//						coins.add(coinNames);
+//						strategies.add(strategyName);
+//					} else {
+//						System.out.println("Duplicate trader names are not allowed");
+//					}
+					
 					brokers.add(traderName);
 					coins.add(coinNames);
 					strategies.add(strategyName);
-					
 	        }
 			
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
