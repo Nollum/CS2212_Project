@@ -46,7 +46,18 @@ public class TradeHandler {
 	}
 	
 	
-	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coins, ArrayList<String> strategies) {
+	private static HashSet<String> consolidateCoins(ArrayList<String[]> coinMatrix) {
+		HashSet<String> result = new HashSet<String>();
+		for (String[] coinList : coinMatrix) {
+			for (String coin : coinList) {
+				result.add(coin);
+			}
+		}
+		return result;
+	}
+	
+	
+	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
 //		System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
 		
 		HashSet<String> duplicateBrokers = getDuplicates(brokers);
@@ -65,9 +76,13 @@ public class TradeHandler {
 		
 		for (int index = 0; index < brokers.size(); index++) {
 			tradingBrokerList.addBroker(new TradingBroker(brokers.get(index), 
-										coins.get(index), 
+										coinMatrix.get(index), 
 										stratFact.createStrategy(strategies.get(index))));
 		}
+		
+		HashSet<String> consolidatedCoinList = consolidateCoins(coinMatrix);
+		
+//		System.out.println(consolidatedCoinList);
 		
 		
 		
