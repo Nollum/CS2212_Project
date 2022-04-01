@@ -12,7 +12,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import cryptoTrader.tradeHandling.TradeHandler;
+
 public class DataFetcher {
+	
+	private static DataFetcher instance;
+	
+	public static DataFetcher getInstance() {
+		if (instance == null)
+			instance = new DataFetcher();
+
+		return instance;
+	}
 
 	private JsonObject getDataForCrypto(String id, String date) {
 
