@@ -1,5 +1,7 @@
 package cryptoTrader.strategy;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 // import org.apache.commons.lang3.ArrayUtils; --> figure out how to do this to find array element index
@@ -56,13 +58,13 @@ public class StrategyA implements StrategyInterface {
 	 * @return TradeResult This method returns a TradeResult object storing the details of the trade performed
 	 */
 	@Override
-	public TradeResult performTrade(String trader, String[] coinList, double[] coinPrices) {
+	public TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices) {
 		this.trader = trader;
 		
-		double btcPrice = 4.00; // replace with value from coinPrices
-		double adaPrice = 30.34; // replace with value from coinPrices
+		double btcPrice = coinPrices.get("BTC"); 
+		double adaPrice = coinPrices.get("ADA");
 		
-		if ((btcPrice < 50000) && (adaPrice > 2)) {
+		if ((btcPrice < 50000) && (adaPrice > 2) && (coinList.contains("ADA"))) {
 			coinTraded = "ADA";
 			action = "Buy";
 			quantity = 10;

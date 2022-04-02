@@ -1,10 +1,13 @@
 package cryptoTrader.strategy;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import cryptoTrader.tradeResult.*;
 
 public interface StrategyInterface {
 
-	TradeResult performTrade(String trader, String[] coinList, double[] coinPrices);
+	abstract TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices);
 	
-	String getStrategyName();
+	abstract String getStrategyName();
 	
 }

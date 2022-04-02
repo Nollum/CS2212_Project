@@ -21,7 +21,7 @@ public class StrategyFactory {
 		else if (strategyName == "Strategy-B"){
 			return StrategyB.getInstance();
 		}
-		else if (strategyName == "Strategy-A") {
+		else if (strategyName == "Strategy-C") {
 			return StrategyC.getInstance();
 		}
 		else {

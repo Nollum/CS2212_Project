@@ -35,10 +35,7 @@ public class TradingBrokerList implements TradingBrokerListInterface {
 
 	
 	public void clear() {
-		for(int i = 0; i < brokerList.size(); i++) {
-			brokerList.remove(i);
-		}
-		
+		brokerList.clear();
 	}
 	
 	

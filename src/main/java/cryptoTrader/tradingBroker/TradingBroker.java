@@ -1,4 +1,6 @@
 package cryptoTrader.tradingBroker;
+import java.util.ArrayList;
+
 import cryptoTrader.strategy.StrategyInterface;
 
 /*
@@ -11,7 +13,7 @@ import cryptoTrader.strategy.StrategyInterface;
 public class TradingBroker{
 	
 	private String brokerName;
-	private String[] coinList;
+	private ArrayList<String> coinList;
 	private StrategyInterface strategy;
 	
 	/*
@@ -22,7 +24,7 @@ public class TradingBroker{
 	public TradingBroker(String brokerName, String[] coinList, StrategyInterface strategy) {
 		
 		this.brokerName = brokerName;
-		coinList = new String[] {};
+		this.coinList = new ArrayList<String>();
 		this.strategy = strategy;
 		
 	}
@@ -47,7 +49,7 @@ public class TradingBroker{
 	 * getter method for coinList
 	 * @return String[] coinList: a list of the crypto coins the client is trading
 	 */
-	public String[] getCoinList() {
+	public ArrayList<String> getCoinList() {
 		return coinList;
 	}
 
@@ -55,7 +57,7 @@ public class TradingBroker{
 	 * setter method for coinList
 	 * @param String[] coinList: a list of the crypto coins the client is trading
 	 */
-	public void setCoinList(String[] coinList) {
+	public void setCoinList(ArrayList<String> coinList) {
 		this.coinList = coinList;
 	}
 

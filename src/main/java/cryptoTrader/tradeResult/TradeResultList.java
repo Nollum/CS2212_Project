@@ -5,7 +5,7 @@ import java.util.*;
 public class TradeResultList implements TradeResultListInterface {
 	
 	private static TradeResultList instance = null;
-	List<TradeResult> resultsList;
+	private ArrayList<TradeResult> resultsList;
 	
 	public static TradeResultList getInstance() {
 		if (instance == null)
@@ -15,7 +15,7 @@ public class TradeResultList implements TradeResultListInterface {
 	}
 	
 	private TradeResultList() {
-		resultsList = new LinkedList<TradeResult>();
+		resultsList = new ArrayList<TradeResult>();
 	}
 	
 	public void addResult(TradeResult result) {

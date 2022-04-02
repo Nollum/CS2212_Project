@@ -1,5 +1,8 @@
 package cryptoTrader.strategy;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import cryptoTrader.tradeResult.TradeResult;
 
 /**
@@ -47,14 +50,13 @@ public class StrategyC implements StrategyInterface {
 	 * @param coinPrices This is the list of prices corresponding to each coin in the list of coins in coinList
 	 * @return TradeResult This method returns a TradeResult object storing the details of the trade performed
 	 */
-	@Override
-	public TradeResult performTrade(String trader, String[] coinList, double[] coinPrices) {
+	public TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices) {
 		this.trader = trader;
 		
-		double btcPrice = 4.00; // replace with value from coinPrices
-		double adaPrice = 30.34; // replace with value from coinPrices
+		double btcPrice = coinPrices.get("BTC"); // replace with value from coinPrices
+		double adaPrice = coinPrices.get("ADA"); // replace with value from coinPrices
 		
-		if ((adaPrice > 3) && (btcPrice < 50)) {
+		if ((adaPrice > 3) && (btcPrice < 50) && (coinList.contains("BTC"))) {
 			coinTraded = "BTC";
 			action = "Sell";
 			quantity = 50;

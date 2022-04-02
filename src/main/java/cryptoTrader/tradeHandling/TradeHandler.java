@@ -8,6 +8,7 @@ import java.util.HashSet;
 
 import cryptoTrader.gui.MainUI;
 import cryptoTrader.strategy.StrategyFactory;
+import cryptoTrader.tradeResult.TradeResult;
 import cryptoTrader.tradeResult.TradeResultList;
 import cryptoTrader.tradingBroker.TradingBroker;
 import cryptoTrader.tradingBroker.TradingBrokerList;
@@ -95,25 +96,19 @@ public class TradeHandler {
         
 		for (String coin : consolidatedCoinList) {
 			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
+			
+			//DEBUGGING STATEMENT
+			System.out.println(coin + ": " + price);
+			
 			coinPrices.put(coin, price);
 		}
 		
-//		System.out.println(consolidatedCoinList);
-		
-		// testing
-//		ArrayList<TradingBroker> brokerList = tradingBrokerList.getBrokers();
-//		
-//		for (TradingBroker broker : brokerList) {
-//			System.out.println(broker.getBrokerName());
-//		}
-		
-		
-		
-		// VALIDATE CRYPTO LIST (AvailableCryptoList)
-		// CREATE A MAP FOR COIN PRICES (CoinName -> Price)
-		// ITERATE OVER THE UPDATED BROKER LIST
-			// tradeResult = BROKER.performTrade()
-			// tradeResultList.add(tradeResult)
+		for (TradingBroker broker : tradingBrokerList.getBrokers()) {
+			TradeResult result = broker.getStrategy().performTrade(currentDate, broker.getCoinList(), coinPrices);
+			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
+			tradeResultList.addResult(result);
+		}
+
 	}
 	
 	// Debugging purposes only
@@ -138,22 +133,7 @@ public class TradeHandler {
 										stratFact.createStrategy(strategies.get(i))));
 		}
 		
-	}
-	
-	
-	public void addAndEditBrokers(TradingBrokerList tradingBrokerList) {
-		
-	}
-	
-	
-	public void removeBrokers(TradingBrokerList tradingBrokerList) {
-		
-		// delete the brokerlist to create the new updated list
 		
 		
 	}
-	
-	
-	
-	
 }
