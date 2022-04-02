@@ -94,8 +94,7 @@ public class AvailableCryptoList {
 					id = object.get("id").getAsString();
 					symbol = object.get("symbol").getAsString().toUpperCase();
 					name = object.get("name").getAsString();
-					
-					System.out.println(symbol + ": " + id);
+
 					availableCryptosMap.put(symbol, id);
 					availableCryptosList.add(name);
 				}

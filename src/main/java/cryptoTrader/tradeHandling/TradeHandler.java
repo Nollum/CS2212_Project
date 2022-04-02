@@ -76,11 +76,6 @@ public class TradeHandler {
 			MainUI.getInstance().duplicateError(duplicateBrokers);
 		}
 		
-		
-		for (int i = 0; i < brokers.size(); i++) {
-			System.out.println(i + ": " + brokers.get(i));
-		}
-		
 		StrategyFactory stratFact = new StrategyFactory();
 		
 		for (int index = 0; index < brokers.size(); index++) {
@@ -98,7 +93,6 @@ public class TradeHandler {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         String currentDate = dateObj.format(formatter);
         
-     
 		for (String coin : consolidatedCoinList) {
 			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
 			coinPrices.put(coin, price);
