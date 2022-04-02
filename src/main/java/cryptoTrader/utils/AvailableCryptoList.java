@@ -88,19 +88,22 @@ public class AvailableCryptoList {
 				JsonArray jsonArray = new JsonParser().parse(inline).getAsJsonArray();
 				int size = jsonArray.size();
 				
-				String name, id;
+				String id, symbol, name;
 				for (int i = 0; i < size; i++) {
 					JsonObject object = jsonArray.get(i).getAsJsonObject();
-					name = object.get("name").getAsString();
 					id = object.get("id").getAsString();
+					symbol = object.get("symbol").getAsString().toUpperCase();
+					name = object.get("name").getAsString();
 					
-					availableCryptosMap.put(name, id);
+					System.out.println(symbol + ": " + id);
+					availableCryptosMap.put(symbol, id);
 					availableCryptosList.add(name);
 				}
 			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	

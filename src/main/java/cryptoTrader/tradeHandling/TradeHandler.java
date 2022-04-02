@@ -1,6 +1,9 @@
 package cryptoTrader.tradeHandling;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import cryptoTrader.gui.MainUI;
@@ -8,6 +11,7 @@ import cryptoTrader.strategy.StrategyFactory;
 import cryptoTrader.tradeResult.TradeResultList;
 import cryptoTrader.tradingBroker.TradingBroker;
 import cryptoTrader.tradingBroker.TradingBrokerList;
+import cryptoTrader.utils.AvailableCryptoList;
 import cryptoTrader.utils.DataFetcher;
 
 public class TradeHandler {
@@ -16,6 +20,7 @@ public class TradeHandler {
 	private DataFetcher dataFetcher;
 	private TradingBrokerList tradingBrokerList;
 	private TradeResultList tradeResultList;
+	private AvailableCryptoList availableCryptos;
 
 	public static TradeHandler getInstance() {
 		if (instance == null)
@@ -28,6 +33,7 @@ public class TradeHandler {
 		dataFetcher = DataFetcher.getInstance();
 		tradingBrokerList = TradingBrokerList.getInstance();
 		tradeResultList = TradeResultList.getInstance();
+		availableCryptos = AvailableCryptoList.getInstance();
 		// Debug message
 		System.out.println("Trade Handler is setup and active");
 
@@ -57,6 +63,8 @@ public class TradeHandler {
 		return result;
 	}
 	
+//	private static fetchPrices()
+	
 	
 	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
 //		System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
@@ -83,6 +91,19 @@ public class TradeHandler {
 		
 		HashSet<String> consolidatedCoinList = consolidateCoins(coinMatrix);
 		
+		HashMap<String, Double> coinPrices = new HashMap<String, Double>();
+		
+		//https://www.tutorialkart.com/java/how-to-get-current-date-in-mm-dd-yyyy-format-in-java/
+		LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        String currentDate = dateObj.format(formatter);
+        
+     
+		for (String coin : consolidatedCoinList) {
+			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
+			coinPrices.put(coin, price);
+		}
+		
 //		System.out.println(consolidatedCoinList);
 		
 		// testing
@@ -101,15 +122,11 @@ public class TradeHandler {
 			// tradeResultList.add(tradeResult)
 	}
 	
-	private double fetchCoinData(String list) {
-		double price = this.dataFetcher.getPriceForCoin("bitcoin", "08-09-2021");
-		return price;
-	}
-	
 	// Debugging purposes only
 	public static void main(String[] args) {
 		TradeHandler instance = TradeHandler.getInstance();
-		System.out.println("Price: " + instance.fetchCoinData(null));
+		System.out.println(instance.availableCryptos.getCryptoID("BTC"));
+//		System.out.println("Price: " + instance.fetchCoinData(null));
 	}
 	
 	
