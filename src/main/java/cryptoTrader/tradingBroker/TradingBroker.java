@@ -7,7 +7,7 @@ import cryptoTrader.strategy.StrategyInterface;
  * TradingBroker class creates a Broker instance in accordance to the user inputs.
  * Imports StrategyInterface from the cryptoTrader.strategy package
  * 
- * @authors Hanniya Zohdi, Rustam Mamedov, Shruthi Sundararaman
+ * @author Hanniya Zohdi, Rustam Mamedov, Shruthi Sundararaman
  */
 
 public class TradingBroker{

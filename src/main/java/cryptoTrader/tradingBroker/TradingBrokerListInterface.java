@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * TradingBrokerListInterface is used by TradingBrokerList
  * The methods addBroker(TradingBroker broker), getBrokers(), removeBroker(String brokerName) and are overridden by TradingBrokerList
- * @authors Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
+ * @author Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
  */
 
 public interface TradingBrokerListInterface {

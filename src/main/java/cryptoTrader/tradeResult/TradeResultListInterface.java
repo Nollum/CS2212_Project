@@ -3,7 +3,7 @@ package cryptoTrader.tradeResult;
 /**
  * TradeResultListInterface is used by TradeResultList
  * The addResult(TradeResult result) method is overridden by TradeResultList
- * @authors Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
+ * @author Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
  */
 
 public interface TradeResultListInterface {

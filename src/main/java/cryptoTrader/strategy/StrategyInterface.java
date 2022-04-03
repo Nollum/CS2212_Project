@@ -7,7 +7,7 @@ import cryptoTrader.tradeResult.*;
 /**
  * StrategyInterface is used by StrategyA, StrategyB, and StrategyC
  * The methods are overridden by each Strategy class
- * @authors Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
+ * @author Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
  */
 public interface StrategyInterface {
 

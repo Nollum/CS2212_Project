@@ -6,7 +6,7 @@ import java.util.*;
  * It creates an instance of a trading broker client list, with methods to
  * add a broker, remove a broker, get the brokers, and clear the entire list when an edit is made
  * 
- * @authors Hanniya Zohdi, Rustam Mamedov, Shruthi Sundararaman
+ * @author Hanniya Zohdi, Rustam Mamedov, Shruthi Sundararaman
  */
 
 public class TradingBrokerList implements TradingBrokerListInterface {

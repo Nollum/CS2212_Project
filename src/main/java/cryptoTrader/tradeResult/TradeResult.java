@@ -5,7 +5,7 @@ import java.util.*;
  * TradeResult class handles the output of client trading actions.
  * It returns the broker name, strategy, crypto traded, price, quantity, and action (buy/sell)
  * 
- * @authors Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
  */
 
 public class TradeResult {

@@ -7,7 +7,7 @@ import java.util.*;
  * It creates an instance of a the TradeResultList that are an output of the trading actions,
  * and is used to display the data charts
  * 
- * @authors Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
  */
 
 public class TradeResultList implements TradeResultListInterface {

@@ -7,8 +7,8 @@ import cryptoTrader.tradeResult.TradeResult;
 /**
  * Creates a StrategyB object in a singleton design pattern
  * Performs trade using the appropriate rules
- * Rule: "If the price of ADA < $2, and the price of ETH < $3500, then buy ADA of worth $1000"
- * @authors Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov
+ * Rule: "If the price of ADA is less than $2, and the price of ETH is less than $3500, then buy ADA of worth $1000"
+ * @author Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov
  */
 public class StrategyB implements StrategyInterface {
 	

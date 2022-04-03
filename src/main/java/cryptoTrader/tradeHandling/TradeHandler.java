@@ -20,7 +20,7 @@ import cryptoTrader.utils.DataFetcher;
  * This includes initiating a trade, adding brokers, removing brokers, changing strategies for brokers,
  * adding/removing crypto tickers, and more.
  * 
- * @authors Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
  */
 
 public class TradeHandler {
