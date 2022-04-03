@@ -1,5 +1,6 @@
 package cryptoTrader.tradingBroker;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import cryptoTrader.strategy.StrategyInterface;
 
@@ -26,7 +27,7 @@ public class TradingBroker{
 	public TradingBroker(String brokerName, String[] coinList, StrategyInterface strategy) {
 		
 		this.brokerName = brokerName;
-		this.coinList = new ArrayList<String>();
+		this.coinList = new ArrayList<String>(Arrays.asList(coinList));
 		this.strategy = strategy;
 		
 	}

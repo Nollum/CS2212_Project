@@ -57,7 +57,7 @@ public class StrategyB implements StrategyInterface {
 		if (coinList.contains("ADA") && coinList.contains("ETH")) {
 			double ethPrice = coinPrices.get("ETH");
 			double adaPrice = coinPrices.get("ADA");
-			if ((adaPrice < 2) && (ethPrice < 3500) && (coinList.contains("ADA"))) {
+			if ((adaPrice < 2) && (ethPrice < 3600)) { // change to 3500
 				coinTraded = "ADA";
 				action = "Buy";
 				quantity = (int) (1000 / adaPrice);

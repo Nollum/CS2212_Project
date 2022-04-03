@@ -45,6 +45,7 @@ public class TradeResultList implements TradeResultListInterface {
 		// notify viewer
 		DataVisualizationCreator creator = new DataVisualizationCreator();
 		creator.createCharts(resultsList);
+//		creator.createCharts(resultsList);
 		
 	}
 }
