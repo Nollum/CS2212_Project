@@ -19,7 +19,9 @@ public class TradingBroker{
 	/*
 	 * Constructor consists of the trading client name, their respected crypto coin list, and chosen strategy. 
 	 * The constructor takes the user inputs from the MainUI JComponents
-	 * @param String brokerName, String[] coinList, StrategyInterface strategy
+	 * @param String brokerName
+	 * @param String[] coinList
+	 * @param StrategyInterface strategy
 	 */
 	public TradingBroker(String brokerName, String[] coinList, StrategyInterface strategy) {
 		
