@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import cryptoTrader.tradeHandling.TradeHandler;
-import cryptoTrader.utils.DataVisualizationCreator;
+import cryptoTrader.viewer.DataVisualizationCreator;
 
 import java.util.ArrayList;
 

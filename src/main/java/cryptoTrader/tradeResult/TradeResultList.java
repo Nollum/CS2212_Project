@@ -1,6 +1,7 @@
 package cryptoTrader.tradeResult;
 
 import java.util.*;
+import cryptoTrader.viewer.*; // change to interface
 
 public class TradeResultList implements TradeResultListInterface {
 	
@@ -20,6 +21,10 @@ public class TradeResultList implements TradeResultListInterface {
 	
 	public void addResult(TradeResult result) {
 		resultsList.add(result);
+		
 		// notify viewer
+		DataVisualizationCreator creator = new DataVisualizationCreator();
+		creator.createCharts(resultsList);
+		
 	}
 }

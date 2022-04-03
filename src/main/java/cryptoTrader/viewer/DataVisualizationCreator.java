@@ -1,8 +1,9 @@
-package cryptoTrader.utils;
+package cryptoTrader.viewer;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -28,15 +29,16 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
 import cryptoTrader.gui.MainUI;
+import cryptoTrader.tradeResult.TradeResult;
 
 public class DataVisualizationCreator {
 	
-	public void createCharts() {
+	public void createCharts(ArrayList<TradeResult> resultsList) {
 //		createTextualOutput();
-		createTableOutput();
+		createTableOutput(resultsList);
 //		createTimeSeries();
 //		createScatter();
-		createBar();
+		createBar(resultsList);
 	}
 
 	private void createTextualOutput() {
@@ -58,9 +60,13 @@ public class DataVisualizationCreator {
 //		MainUI.getInstance().updateStats(scrollPane);
 	}
 	
-	private void createTableOutput() {
+	private void createTableOutput(ArrayList<TradeResult> resultsList) {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
+		
+		for (TradeResult result : resultsList) {
+			// fill in method for creating the data object
+		}
 		
 		// Dummy data for demo purposes. These should come from actual fetcher
 		Object[][] data = {
@@ -77,6 +83,8 @@ public class DataVisualizationCreator {
 				{"Trader-2", "Strategy-B", "FTM", "Sell", "200", "50.2","19-January-2022"},
 				{"Trader-3", "Strategy-C", "HNT", "Buy", "1000", "2.59","20-January-2022"}
 		};
+		
+		
 		
 
 		JTable table = new JTable(data, columnNames);
@@ -196,7 +204,7 @@ public class DataVisualizationCreator {
 		MainUI.getInstance().updateStats(chartPanel);
 	}
 	
-	private void createBar() {
+	private void createBar(ArrayList<TradeResult> resultsList) {
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 //		Those are hard-coded values!!!! 

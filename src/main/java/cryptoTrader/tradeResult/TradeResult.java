@@ -54,6 +54,8 @@ public class TradeResult {
 	
 	// returns everything; for testing purposes
 	public String getEverything() {
+		
+		// "Trader-1", "Strategy-A", "ETH", "Buy", "500", "150.3","13-January-2022"
 		return trader + " " + strategy + " " + coinTraded + " " + action + " " + getQuantity() + " " + getPrice() + " " + getDate();
 	}
 
