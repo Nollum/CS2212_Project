@@ -240,7 +240,7 @@ public class MainUI extends JFrame implements ActionListener {
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
-			creator.createCharts();
+			//creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
 			dtm.addRow(new String[3]);
 		} else if ("remTableRow".equals(command)) {

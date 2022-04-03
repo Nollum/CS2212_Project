@@ -65,7 +65,7 @@ public class StrategyA implements StrategyInterface {
 		if (coinList.contains("BTC") && coinList.contains("ADA")) {
 			double btcPrice = coinPrices.get("BTC"); 
 			double adaPrice = coinPrices.get("ADA");	
-			if ((btcPrice < 50000) && (adaPrice > 2) && (coinList.contains("ADA"))) {
+			if ((btcPrice < 50000) && (adaPrice > 2)) {
 				coinTraded = "ADA";
 				action = "Buy";
 				quantity = 10;
