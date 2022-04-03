@@ -33,12 +33,12 @@ import cryptoTrader.tradeResult.TradeResult;
 
 public class DataVisualizationCreator {
 	
-	public void createCharts() {
+	public void createCharts(ArrayList<TradeResult> resultsList) {
 //		createTextualOutput();
-		createTableOutput();
+		createTableOutput(resultsList);
 //		createTimeSeries();
 //		createScatter();
-		createBar();
+		createBar(resultsList);
 	}
 
 	private void createTextualOutput() {
@@ -60,25 +60,25 @@ public class DataVisualizationCreator {
 //		MainUI.getInstance().updateStats(scrollPane);
 	}
 	
-	private void createTableOutput() {
+	private void createTableOutput(ArrayList<TradeResult> resultsList) {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
-//		int colSize = columnNames.length;
-//		int rowSize = resultsList.size();
-//		Object[][] myData = (Object[][]) new Object();
-//		
-//		int row = 0;
-//		for (TradeResult result : resultsList) {
-//			// fill in method for creating the data object
-//			myData[row][0] = result.getTraderName();
-//			myData[row][1] = result.getStrategyName();
-//			myData[row][2] = result.getCoinTraded();
-//			myData[row][3] = result.getAction();
-//			myData[row][4] = result.getQuantity();
-//			myData[row][5] = result.getPrice();
-//			myData[row][6] = result.getDate();
-//			row = row + 1;
-//		}
+		int colSize = columnNames.length;
+		int rowSize = resultsList.size();
+		Object[][] myData = new Object[rowSize][colSize];
+		
+		int row = 0;
+		for (TradeResult result : resultsList) {
+			// fill in method for creating the data object
+			myData[row][0] = result.getTraderName();
+			myData[row][1] = result.getStrategyName();
+			myData[row][2] = result.getCoinTraded();
+			myData[row][3] = result.getAction();
+			myData[row][4] = result.getQuantity();
+			myData[row][5] = result.getPrice();
+			myData[row][6] = result.getDate();
+			row = row + 1;
+		}
 		
 		// Dummy data for demo purposes. These should come from actual fetcher
 		Object[][] data = {
@@ -99,7 +99,7 @@ public class DataVisualizationCreator {
 		
 		
 
-		JTable table = new JTable(data, columnNames);
+		JTable table = new JTable(myData, columnNames);
 		//table.setPreferredSize(new Dimension(600, 300));
 		
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -216,7 +216,7 @@ public class DataVisualizationCreator {
 		MainUI.getInstance().updateStats(chartPanel);
 	}
 	
-	private void createBar() {
+	private void createBar(ArrayList<TradeResult> resultsList) {
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 //		Those are hard-coded values!!!! 
