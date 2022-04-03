@@ -11,7 +11,7 @@ import cryptoTrader.tradeResult.*;
  */
 public interface StrategyInterface {
 
-	/*
+	/**
 	 * performTrade method is abstract so it can be overriden by the Strategy classes
 	 * It returns the TradeResult of a trade
 	 * @param String trader
@@ -21,7 +21,7 @@ public interface StrategyInterface {
 	 */
 	abstract TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices);
 	
-	/*
+	/**
 	 * getStrategyName returns the name of the implemented strategy
 	 * @return String (of the strategy name)
 	 */

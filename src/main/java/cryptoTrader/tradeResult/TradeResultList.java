@@ -3,7 +3,7 @@ package cryptoTrader.tradeResult;
 import java.util.*;
 import cryptoTrader.viewer.*; // change to interface
 
-/*
+/**
  * TradeResultList class implements methods from TradeResultListInterface
  * It creates an instance of a the TradeResultList that are an output of the trading actions,
  * and is used to display the data charts
@@ -16,7 +16,7 @@ public class TradeResultList implements TradeResultListInterface {
 	private static TradeResultList instance = null;
 	private ArrayList<TradeResult> resultsList;
 	
-	/*
+	/**
 	 * method getInstance() returns an instance of a TradeResultList object
 	 * @return instance
 	 */
@@ -27,14 +27,14 @@ public class TradeResultList implements TradeResultListInterface {
 		return instance;
 	}
 	
-	/*
+	/**
 	 * TradeResultList constructor initiates the ArrayList of TradeResult objects
 	 */
 	private TradeResultList() {
 		resultsList = new ArrayList<TradeResult>();
 	}
 	
-	/*
+	/**
 	 * method is implemented from TradeResultListInterface, adding a TradeResult to ArrayList<TradeResult> resultsList
 	 * @param TradeResult result
 	 */

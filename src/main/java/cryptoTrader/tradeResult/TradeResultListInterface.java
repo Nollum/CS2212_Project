@@ -8,7 +8,7 @@ package cryptoTrader.tradeResult;
 
 public interface TradeResultListInterface {
 
-	/*
+	/**
 	 * addResult method adds a new TradeResult to the TradeResultList
 	 * @param TradeResult result
 	 */

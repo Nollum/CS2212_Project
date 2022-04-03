@@ -15,7 +15,7 @@ import cryptoTrader.tradingBroker.TradingBrokerList;
 import cryptoTrader.utils.AvailableCryptoList;
 import cryptoTrader.utils.DataFetcher;
 
-/*
+/**
  * TradeHandler class handles the user's actions on the GUI
  * This includes initiating a trade, adding brokers, removing brokers, changing strategies for brokers,
  * adding/removing crypto tickers, and more.
@@ -31,7 +31,7 @@ public class TradeHandler {
 	private TradeResultList tradeResultList;
 	private AvailableCryptoList availableCryptos;
 
-	/*
+	/**
 	 * Method creates an instance of TradeHandler if it is not active yet
 	 */
 	public static TradeHandler getInstance() {
@@ -41,7 +41,7 @@ public class TradeHandler {
 		return instance;
 	}
 	
-	/*
+	/**
 	 * TradeHandler constructor creates an instance of the DataFetcher API, TradingBrokerList, TradeResultList, and AvailableCryptoList
 	 * A success string is printed if the TradeHandler is successfully setup
 	 */
@@ -56,7 +56,7 @@ public class TradeHandler {
 	}
 	
 	
-	/*
+	/**
 	 * @param ArrayList<String> brokers
 	 * @return HashSet<String>
 	 */
@@ -73,7 +73,7 @@ public class TradeHandler {
 	}
 	
 	
-	/*
+	/**
 	 * @param ArrayList<String[]> coinMatrix
 	 * @return HashSet<String>
 	 */
@@ -90,7 +90,7 @@ public class TradeHandler {
 //	private static fetchPrices()
 	
 	
-	/*
+	/**
 	 * initiateTrade() method executes trades depending on broker, strategy, crypto coins, and strategy
 	 * The method grabs the list of brokers and their associated crypto coins, prices, current date, and strategy to perform the trades.
 	 * @param ArrayList<String> brokers
@@ -156,7 +156,7 @@ public class TradeHandler {
 	}
 	
 	
-	/*
+	/**
 	 * Method is called every time the list of brokers is updated, whether a broker is added, deleted, or edited.
 	 * The original tradingBrokerList is cleared and a new brokerList is created with the updated client info
 	 * @param ArrayList<String> brokers
