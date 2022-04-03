@@ -15,7 +15,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.axis.LogAxis;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
@@ -33,12 +33,12 @@ import cryptoTrader.tradeResult.TradeResult;
 
 public class DataVisualizationCreator {
 	
-	public void createCharts(ArrayList<TradeResult> resultsList) {
+	public void createCharts() {
 //		createTextualOutput();
-		createTableOutput(resultsList);
+		createTableOutput();
 //		createTimeSeries();
 //		createScatter();
-		createBar(resultsList);
+		createBar();
 	}
 
 	private void createTextualOutput() {
@@ -60,7 +60,7 @@ public class DataVisualizationCreator {
 //		MainUI.getInstance().updateStats(scrollPane);
 	}
 	
-	private void createTableOutput(ArrayList<TradeResult> resultsList) {
+	private void createTableOutput() {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 //		int colSize = columnNames.length;
@@ -150,7 +150,7 @@ public class DataVisualizationCreator {
 		plot.setRenderer(0, splinerenderer1);
 		DateAxis domainAxis = new DateAxis("");
 		plot.setDomainAxis(domainAxis);
-		plot.setRangeAxis(new LogAxis("Price(USD)"));
+		//plot.setRangeAxis(new LogAxis("Price(USD)"));
 
 		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis
 		//plot.mapDatasetToRangeAxis(1, 1); // 2nd dataset to 2nd y-axis
@@ -201,7 +201,7 @@ public class DataVisualizationCreator {
 		plot.setRenderer(0, itemrenderer1);
 		DateAxis domainAxis = new DateAxis("");
 		plot.setDomainAxis(domainAxis);
-		plot.setRangeAxis(new LogAxis("Price(USD)"));
+		//plot.setRangeAxis(new LogAxis("Price(USD)"));
 
 		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis
 		//plot.mapDatasetToRangeAxis(1, 1); // 2nd dataset to 2nd y-axis
@@ -216,7 +216,7 @@ public class DataVisualizationCreator {
 		MainUI.getInstance().updateStats(chartPanel);
 	}
 	
-	private void createBar(ArrayList<TradeResult> resultsList) {
+	private void createBar() {
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 //		Those are hard-coded values!!!! 
@@ -234,8 +234,8 @@ public class DataVisualizationCreator {
 		plot.setRenderer(0, barrenderer1);
 		CategoryAxis domainAxis = new CategoryAxis("Strategy");
 		plot.setDomainAxis(domainAxis);
-		LogAxis rangeAxis = new LogAxis("Actions(Buys or Sells)");
-		rangeAxis.setRange(new Range(1.0, 20.0));
+		NumberAxis rangeAxis = new NumberAxis("Actions(Buys or Sells)");
+		rangeAxis.setRange(new Range(0.1, 20.0));
 		plot.setRangeAxis(rangeAxis);
 
 		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis

@@ -15,7 +15,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.axis.LogAxis;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
@@ -51,8 +51,8 @@ public class HistogramViewer {
 		plot.setRenderer(0, barrenderer1);
 		CategoryAxis domainAxis = new CategoryAxis("Strategy");
 		plot.setDomainAxis(domainAxis);
-		LogAxis rangeAxis = new LogAxis("Actions(Buys or Sells)");
-		rangeAxis.setRange(new Range(1.0, 20.0));
+		NumberAxis rangeAxis = new NumberAxis("Actions(Buys or Sells)");
+		rangeAxis.setRange(new Range(0.0, 20.0));
 		plot.setRangeAxis(rangeAxis);
 
 		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis
