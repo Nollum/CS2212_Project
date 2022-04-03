@@ -50,5 +50,11 @@ public class TradeResult {
 	public String getDate() {
 		return date.toString();
 	}
+	
+	
+	// returns everything; for testing purposes
+	public String getEverything() {
+		return trader + " " + strategy + " " + coinTraded + " " + action + " " + getQuantity() + " " + getPrice() + " " + getDate();
+	}
 
 }
