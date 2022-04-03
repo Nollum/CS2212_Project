@@ -8,8 +8,8 @@ import cryptoTrader.tradeResult.TradeResult;
 /**
  * Creates a StrategyC object in a singleton design pattern
  * Performs trade using the appropriate rules
- * Rule: "If the price of ADA > $3, and the price of BTC < $50, then buy 50 BTC"
- * @authors Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov
+ * Rule: "If the price of ADA is more than $3, and the price of BTC is less than $50, then buy 50 BTC"
+ * @author Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov
  */
 public class StrategyC implements StrategyInterface {
 

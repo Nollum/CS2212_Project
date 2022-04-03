@@ -12,8 +12,8 @@ import cryptoTrader.tradeResult.TradeResultList;
 /**
  * Creates a StrategyA object in a singleton design pattern
  * Performs trade using the appropriate rules
- * Rule: "If the price of BTC < 50,000 and the price of ADA > 2, then buy 10 ADA"
- * @authors Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
+ * Rule: "If the price of BTC is less than 50,000 and the price of ADA is more than 2, then buy 10 ADA"
+ * @author Shruthi Sundararaman, Hanniya Zohdi, Rustam Mamedov 
  */
 public class StrategyA implements StrategyInterface {
 	

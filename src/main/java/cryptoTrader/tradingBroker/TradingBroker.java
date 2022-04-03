@@ -3,11 +3,11 @@ import java.util.ArrayList;
 
 import cryptoTrader.strategy.StrategyInterface;
 
-/*
+/**
  * TradingBroker class creates a Broker instance in accordance to the user inputs.
  * Imports StrategyInterface from the cryptoTrader.strategy package
  * 
- * @authors Hanniya Zohdi, Rustam Mamedov, Shruthi Sundararaman
+ * @author Hanniya Zohdi, Rustam Mamedov, Shruthi Sundararaman
  */
 
 public class TradingBroker{
@@ -16,10 +16,12 @@ public class TradingBroker{
 	private ArrayList<String> coinList;
 	private StrategyInterface strategy;
 	
-	/*
+	/**
 	 * Constructor consists of the trading client name, their respected crypto coin list, and chosen strategy. 
 	 * The constructor takes the user inputs from the MainUI JComponents
-	 * @param String brokerName, String[] coinList, StrategyInterface strategy
+	 * @param String brokerName
+	 * @param String[] coinList
+	 * @param StrategyInterface strategy
 	 */
 	public TradingBroker(String brokerName, String[] coinList, StrategyInterface strategy) {
 		
@@ -29,7 +31,7 @@ public class TradingBroker{
 		
 	}
 
-	/*
+	/**
 	 * getter method for brokerName
 	 * @return String brokerName: name of the trading client
 	 */
@@ -37,7 +39,7 @@ public class TradingBroker{
 		return brokerName;
 	}
 
-	/*
+	/**
 	 * setter method for brokerName
 	 * @param String brokerName: name of the trading client
 	 */
@@ -45,7 +47,7 @@ public class TradingBroker{
 		this.brokerName = brokerName;
 	}
 
-	/*
+	/**
 	 * getter method for coinList
 	 * @return String[] coinList: a list of the crypto coins the client is trading
 	 */
@@ -53,7 +55,7 @@ public class TradingBroker{
 		return coinList;
 	}
 
-	/*
+	/**
 	 * setter method for coinList
 	 * @param String[] coinList: a list of the crypto coins the client is trading
 	 */
@@ -61,7 +63,7 @@ public class TradingBroker{
 		this.coinList = coinList;
 	}
 
-	/*
+	/**
 	 * getter method for strategy
 	 * @return StrategyInterface strategy: the Strategy object the client is basing their trade actions on
 	 */
@@ -69,7 +71,7 @@ public class TradingBroker{
 		return strategy;
 	}
 
-	/*
+	/**
 	 * setter method for strategy
 	 * @param StrategyInterface strategy: the Strategy object the client is basing their trade actions on
 	 */
