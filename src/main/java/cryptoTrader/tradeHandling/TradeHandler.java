@@ -104,7 +104,14 @@ public class TradeHandler {
 		}
 		
 		for (TradingBroker broker : tradingBrokerList.getBrokers()) {
-			TradeResult result = broker.getStrategy().performTrade(currentDate, broker.getCoinList(), coinPrices);
+			
+			// to only pass the appropriate coin prices to the broker's strategy
+			HashMap<String, Double> appropriateCoins = new HashMap<String, Double>();	
+			for (String coin : broker.getCoinList()) {
+				appropriateCoins.put(coin, coinPrices.get(coin));
+			}
+			
+			TradeResult result = broker.getStrategy().performTrade(currentDate, broker.getCoinList(), appropriateCoins);
 			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
 			tradeResultList.addResult(result);
 		}
