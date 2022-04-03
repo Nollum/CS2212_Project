@@ -1,8 +1,9 @@
-package cryptoTrader.utils;
+package cryptoTrader.viewer;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -14,7 +15,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.axis.LogAxis;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
@@ -28,6 +29,7 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
 import cryptoTrader.gui.MainUI;
+import cryptoTrader.tradeResult.TradeResult;
 
 public class DataVisualizationCreator {
 	
@@ -61,6 +63,22 @@ public class DataVisualizationCreator {
 	private void createTableOutput() {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
+//		int colSize = columnNames.length;
+//		int rowSize = resultsList.size();
+//		Object[][] myData = (Object[][]) new Object();
+//		
+//		int row = 0;
+//		for (TradeResult result : resultsList) {
+//			// fill in method for creating the data object
+//			myData[row][0] = result.getTraderName();
+//			myData[row][1] = result.getStrategyName();
+//			myData[row][2] = result.getCoinTraded();
+//			myData[row][3] = result.getAction();
+//			myData[row][4] = result.getQuantity();
+//			myData[row][5] = result.getPrice();
+//			myData[row][6] = result.getDate();
+//			row = row + 1;
+//		}
 		
 		// Dummy data for demo purposes. These should come from actual fetcher
 		Object[][] data = {
@@ -77,6 +95,8 @@ public class DataVisualizationCreator {
 				{"Trader-2", "Strategy-B", "FTM", "Sell", "200", "50.2","19-January-2022"},
 				{"Trader-3", "Strategy-C", "HNT", "Buy", "1000", "2.59","20-January-2022"}
 		};
+		
+		
 		
 
 		JTable table = new JTable(data, columnNames);
@@ -130,7 +150,7 @@ public class DataVisualizationCreator {
 		plot.setRenderer(0, splinerenderer1);
 		DateAxis domainAxis = new DateAxis("");
 		plot.setDomainAxis(domainAxis);
-		plot.setRangeAxis(new LogAxis("Price(USD)"));
+		//plot.setRangeAxis(new LogAxis("Price(USD)"));
 
 		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis
 		//plot.mapDatasetToRangeAxis(1, 1); // 2nd dataset to 2nd y-axis
@@ -181,7 +201,7 @@ public class DataVisualizationCreator {
 		plot.setRenderer(0, itemrenderer1);
 		DateAxis domainAxis = new DateAxis("");
 		plot.setDomainAxis(domainAxis);
-		plot.setRangeAxis(new LogAxis("Price(USD)"));
+		//plot.setRangeAxis(new LogAxis("Price(USD)"));
 
 		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis
 		//plot.mapDatasetToRangeAxis(1, 1); // 2nd dataset to 2nd y-axis
@@ -214,8 +234,8 @@ public class DataVisualizationCreator {
 		plot.setRenderer(0, barrenderer1);
 		CategoryAxis domainAxis = new CategoryAxis("Strategy");
 		plot.setDomainAxis(domainAxis);
-		LogAxis rangeAxis = new LogAxis("Actions(Buys or Sells)");
-		rangeAxis.setRange(new Range(1.0, 20.0));
+		NumberAxis rangeAxis = new NumberAxis("Actions(Buys or Sells)");
+		rangeAxis.setRange(new Range(0.1, 20.0));
 		plot.setRangeAxis(rangeAxis);
 
 		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis

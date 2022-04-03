@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import cryptoTrader.tradeHandling.TradeHandler;
-import cryptoTrader.utils.DataVisualizationCreator;
+import cryptoTrader.viewer.DataVisualizationCreator;
 
 import java.util.ArrayList;
 
@@ -127,7 +127,7 @@ public class MainUI extends JFrame implements ActionListener {
 		strategyNames.add("Strategy-A");
 		strategyNames.add("Strategy-B");
 		strategyNames.add("Strategy-C");
-		strategyNames.add("Strategy-D");
+		//strategyNames.add("Strategy-D");
 		TableColumn strategyColumn = table.getColumnModel().getColumn(2);
 		JComboBox comboBox = new JComboBox(strategyNames);
 		strategyColumn.setCellEditor(new DefaultCellEditor(comboBox));
@@ -239,8 +239,8 @@ public class MainUI extends JFrame implements ActionListener {
 			
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
 			stats.removeAll();
-//			DataVisualizationCreator creator = new DataVisualizationCreator();
-//			creator.createCharts();
+			DataVisualizationCreator creator = new DataVisualizationCreator();
+			creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
 			dtm.addRow(new String[3]);
 		} else if ("remTableRow".equals(command)) {

@@ -14,7 +14,6 @@ public class StrategyB implements StrategyInterface {
 	
 	private static StrategyB instance = null;
 
-	String trader;
 	String strategy;
 	String coinTraded;
 	String action = null;
@@ -39,6 +38,10 @@ public class StrategyB implements StrategyInterface {
 	 */
 	private StrategyB() {
 		strategy = getStrategyName();
+		coinTraded = "None";
+		action = "Fail";
+		quantity = 0;
+		price = 0;
 	}
 	
 	/**
@@ -50,23 +53,18 @@ public class StrategyB implements StrategyInterface {
 	 * @return TradeResult This method returns a TradeResult object storing the details of the trade performed
 	 */
 	public TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices) {
-		this.trader = trader;
 		
-		double ethPrice = coinPrices.get("ETH"); // replace with value from coinPrices
-		double adaPrice = coinPrices.get("ADA"); // replace with value from coinPrices
+		if (coinList.contains("ADA") && coinList.contains("ETH")) {
+			double ethPrice = coinPrices.get("ETH");
+			double adaPrice = coinPrices.get("ADA");
+			if ((adaPrice < 2) && (ethPrice < 3500) && (coinList.contains("ADA"))) {
+				coinTraded = "ADA";
+				action = "Buy";
+				quantity = (int) (1000 / adaPrice);
+				price = quantity * adaPrice;
+			}
+		}
 		
-		if ((adaPrice < 2) && (ethPrice < 3500) && (coinList.contains("ADA"))) {
-			coinTraded = "ADA";
-			action = "Buy";
-			quantity = (int) (1000 / adaPrice);
-			price = quantity * adaPrice;
-		}
-		else {
-			coinTraded = "None";
-			action = "Fail";
-			quantity = 0;
-			price = 0;
-		}
 		TradeResult result = new TradeResult(trader, strategy, coinTraded, action, quantity, price);
 		return result;
 	}
@@ -78,6 +76,22 @@ public class StrategyB implements StrategyInterface {
 	@Override
 	public String getStrategyName() {
 		return "Strategy-B";
+	}
+	
+	// for testing purposes
+	public static void main(String[] args) {
+		StrategyB myStrategy = StrategyB.getInstance();
+		ArrayList<String> coinList1 = new ArrayList<String>();
+		coinList1.add("ETH");
+		coinList1.add("ADA");
+		
+		HashMap<String, Double> coinPrices1 = new HashMap<String, Double>();
+		coinPrices1.put("ETH", 500.3);
+		coinPrices1.put("ADA", 1.4);
+		
+		TradeResult testResult = myStrategy.performTrade("TestBroker", coinList1, coinPrices1);
+		System.out.println(testResult.getEverything());
+				
 	}
 
 }
