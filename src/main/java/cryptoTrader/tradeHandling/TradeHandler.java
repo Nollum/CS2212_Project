@@ -137,7 +137,7 @@ public class TradeHandler {
 			}
 			System.out.println(broker.getCoinList());
 			
-			TradeResult result = broker.getStrategy().performTrade(currentDate, broker.getCoinList(), appropriateCoins);
+			TradeResult result = broker.getStrategy().performTrade(broker.getBrokerName(), broker.getCoinList(), appropriateCoins);
 			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
 			tradeResultList.addResult(result);
 		}

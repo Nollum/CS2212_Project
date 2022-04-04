@@ -171,6 +171,7 @@ public class MainUI extends JFrame implements ActionListener {
 	}
 
 	public void updateStats(JComponent component) {
+		stats.removeAll();
 		stats.add(component);
 		stats.revalidate();
 	}
@@ -237,8 +238,9 @@ public class MainUI extends JFrame implements ActionListener {
 					strategies.add(strategyName);
 	        }
 			
+			//stats.removeAll();
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
-			stats.removeAll();
+			
 			DataVisualizationCreator creator = new DataVisualizationCreator();
 			//creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
