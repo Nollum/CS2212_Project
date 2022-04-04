@@ -16,7 +16,7 @@ import com.google.gson.JsonParser;
  * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
  */
 
-public class DataFetcher {
+public class DataFetcher implements DataFetcherInterface {
 	
 	private static DataFetcher instance;
 	

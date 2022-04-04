@@ -20,7 +20,7 @@ import com.google.gson.JsonParser;
  * @author Professor Kontogiannis
  */
 
-public class AvailableCryptoList {
+public class AvailableCryptoList implements AvailableCryptoListInterface {
 	private static AvailableCryptoList instance = null;
 	
 	private Map<String, String> availableCryptosMap = new HashMap<>();

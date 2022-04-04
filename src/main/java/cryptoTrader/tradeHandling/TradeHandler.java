@@ -1,6 +1,7 @@
 package cryptoTrader.tradeHandling;
 
 import java.time.LocalDate;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,10 +10,15 @@ import java.util.HashSet;
 import cryptoTrader.strategy.StrategyFactory;
 import cryptoTrader.tradeResult.TradeResult;
 import cryptoTrader.tradeResult.TradeResultList;
+import cryptoTrader.tradeResult.TradeResultListInterface;
 import cryptoTrader.tradingBroker.TradingBroker;
 import cryptoTrader.tradingBroker.TradingBrokerList;
+import cryptoTrader.tradingBroker.TradingBrokerListInterface;
 import cryptoTrader.utils.AvailableCryptoList;
+import cryptoTrader.utils.AvailableCryptoListInterface;
 import cryptoTrader.utils.DataFetcher;
+import cryptoTrader.utils.DataFetcherInterface;
+
 
 /**
  * TradeHandler class handles the user's actions on the GUI
@@ -22,13 +28,13 @@ import cryptoTrader.utils.DataFetcher;
  * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
  */
 
-public class TradeHandler {
+public class TradeHandler implements TradeHandlerInterface {
 
 	private static TradeHandler instance;
-	private DataFetcher dataFetcher;
-	private TradingBrokerList tradingBrokerList;
-	private TradeResultList tradeResultList;
-	private AvailableCryptoList availableCryptos;
+	private DataFetcherInterface dataFetcher;
+	private TradingBrokerListInterface tradingBrokerList;
+	private TradeResultListInterface tradeResultList;
+	private AvailableCryptoListInterface availableCryptos;
 
 	/**
 	 * Method creates an instance of TradeHandler if it is not active yet
@@ -133,7 +139,7 @@ public class TradeHandler {
 	 * @param ArrayList<String[]> coinMatrix
 	 * @param ArrayList<String> strategies
 	 */
-	private void updateBrokersList(ArrayList<String> brokers, TradingBrokerList tradingBrokerList, 
+	private void updateBrokersList(ArrayList<String> brokers, TradingBrokerListInterface tradingBrokerList, 
 			ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
 		
 		// clearing the brokerlist to create the new updated list
