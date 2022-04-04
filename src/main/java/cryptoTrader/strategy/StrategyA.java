@@ -45,16 +45,13 @@ public class StrategyA implements StrategyInterface {
 	private StrategyA () {
 		
 		strategyName = getStrategyName();
-		coinTraded = "None";
-		action = "Fail";
-		quantity = 0;
-		price = 0;
+		initializeProperties();
 	}
 
 	
 	/**
 	 * This method executes a trade according to a predefined set of rules. 
-	 * This performs a trade as follows: If the price of BTC < 50,000 and the price of ADA > 2, then buy 10 ADA
+	 * This performs a trade as follows: If the price of BTC < $58,000 and the price of ADA > $1.5, then buy 10 ADA
 	 * @param trader This is the name of the trading broker that initiated this trade
 	 * @param coinList This is the list of coins that this strategy is interested in knowing the prices for performing a trade
 	 * @param coinPrices This is the list of prices corresponding to each coin in the list of coins in coinList
@@ -62,10 +59,13 @@ public class StrategyA implements StrategyInterface {
 	 */
 	@Override
 	public TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices) {		
+		
+		initializeProperties();
+		
 		if (coinList.contains("BTC") && coinList.contains("ADA")) {
 			double btcPrice = coinPrices.get("BTC"); 
 			double adaPrice = coinPrices.get("ADA");	
-			if ((btcPrice < 50000) && (adaPrice > 2)) {
+			if ((btcPrice < 58000) && (adaPrice > 1.5)) {
 				coinTraded = "ADA";
 				action = "Buy";
 				quantity = 10;
@@ -84,6 +84,17 @@ public class StrategyA implements StrategyInterface {
 	@Override
 	public String getStrategyName() {
 		return "Strategy-A";
+	}
+	
+	/**
+	 * This method sets all the properties for a trade result to represent a fail state
+	 */
+	@Override
+	public void initializeProperties() {
+		coinTraded = "None";
+		action = "Fail";
+		quantity = 0;
+		price = 0;
 	}
 	
 	// for testing purposes

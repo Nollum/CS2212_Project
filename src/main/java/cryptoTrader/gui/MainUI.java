@@ -1,6 +1,7 @@
 package cryptoTrader.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -128,6 +130,7 @@ public class MainUI extends JFrame implements ActionListener {
 		dtm = new DefaultTableModel(new Object[] { "Trading Client", "Coin List", "Strategy Name" }, 1);
 		table = new JTable(dtm);
 		// table.setPreferredSize(new Dimension(600, 300));
+		table.setGridColor(new Color(102, 102, 102));
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Trading Client Actions",
 				TitledBorder.CENTER, TitledBorder.TOP));
@@ -136,7 +139,6 @@ public class MainUI extends JFrame implements ActionListener {
 		strategyNames.add("Strategy-A");
 		strategyNames.add("Strategy-B");
 		strategyNames.add("Strategy-C");
-		//strategyNames.add("Strategy-D");
 		TableColumn strategyColumn = table.getColumnModel().getColumn(2);
 		JComboBox comboBox = new JComboBox(strategyNames);
 		strategyColumn.setCellEditor(new DefaultCellEditor(comboBox));
@@ -147,7 +149,7 @@ public class MainUI extends JFrame implements ActionListener {
 		remRow.setActionCommand("remTableRow");
 		remRow.addActionListener(this);
 
-		scrollPane.setPreferredSize(new Dimension(800, 300));
+		scrollPane.setPreferredSize(new Dimension(550, 300));
 		table.setFillsViewportHeight(true);
 		
 
@@ -166,7 +168,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 		// Set charts region
 		JPanel west = new JPanel();
-		west.setPreferredSize(new Dimension(1250, 650));
+		west.setPreferredSize(new Dimension(1050, 650));
 		stats = new JPanel();
 		stats.setLayout(new GridLayout(2, 2));
 
@@ -207,13 +209,13 @@ public class MainUI extends JFrame implements ActionListener {
 	 * added to the table.
 	 * @param duplicates the set of duplicate trader names
 	 */
-	public void duplicateError(HashSet<String> duplicates) {
-		for (String duplicate : duplicates) {
-			JOptionPane.showMessageDialog(this, "Trading broker with name " + duplicate 
-					+ " was not added. Please ensure that trading broker names are unique." );
-		}
-		
-	}
+//	public void duplicateError(HashSet<String> duplicates) {
+//		for (String duplicate : duplicates) {
+//			JOptionPane.showMessageDialog(this, "Trading broker with name " + duplicate 
+//					+ " was not added. Please ensure that trading broker names are unique." );
+//		}
+//		
+//	}
 
 	/**
 	 * actionPerformed validates user input on an ActionEvent. 
@@ -257,10 +259,14 @@ public class MainUI extends JFrame implements ActionListener {
 //					} else {
 //						System.out.println("Duplicate trader names are not allowed");
 //					}
-					
-					brokers.add(traderName);
-					coins.add(coinNames);
-					strategies.add(strategyName);
+					if (brokers.contains(traderName)) {
+						JOptionPane.showMessageDialog(this, "Trading broker with name " + traderName 
+								+ " was not added. Please ensure that trading broker names are unique." );
+					} else {
+						brokers.add(traderName);
+						coins.add(coinNames);
+						strategies.add(strategyName);
+					}
 	        }
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
 //			DataVisualizationCreator creator = new DataVisualizationCreator();

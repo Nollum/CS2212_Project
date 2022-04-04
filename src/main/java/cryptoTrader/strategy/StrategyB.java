@@ -38,15 +38,12 @@ public class StrategyB implements StrategyInterface {
 	 */
 	private StrategyB() {
 		strategy = getStrategyName();
-		coinTraded = "None";
-		action = "Fail";
-		quantity = 0;
-		price = 0;
+		initializeProperties();
 	}
 	
 	/**
 	 * This method executes a trade according to a predefined set of rules. 
-	 * This performs a trade as follows: If the price of ADA < $2, and the price of ETH < $3500, then buy ADA of worth $1000
+	 * This performs a trade as follows: If the price of ADA < $2, and the price of ETH < $4500, then buy ADA of worth $1000
 	 * @param trader This is the name of the trading broker that initiated this trade
 	 * @param coinList This is the list of coins that this strategy is interested in knowing the prices for performing a trade
 	 * @param coinPrices This is the list of prices corresponding to each coin in the list of coins in coinList
@@ -54,14 +51,16 @@ public class StrategyB implements StrategyInterface {
 	 */
 	public TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices) {
 		
+		initializeProperties();
+		
 		if (coinList.contains("ADA") && coinList.contains("ETH")) {
 			
 			double ethPrice = coinPrices.get("ETH");
 			double adaPrice = coinPrices.get("ADA");
-			System.out.println(ethPrice);
-			System.out.println(adaPrice);
-			if ((adaPrice < 2) && (ethPrice < 4500)) { // change to 3500
-				System.out.println("HERE");
+			//System.out.println(ethPrice);
+			//System.out.println(adaPrice);
+			if ((adaPrice < 2) && (ethPrice < 4500)) { 
+				//System.out.println("HERE");
 				coinTraded = "ADA";
 				action = "Buy";
 				quantity = (int) (1000 / adaPrice);
@@ -80,6 +79,17 @@ public class StrategyB implements StrategyInterface {
 	@Override
 	public String getStrategyName() {
 		return "Strategy-B";
+	}
+	
+	/**
+	 * This method sets all the properties for a trade result to represent a fail state
+	 */
+	@Override
+	public void initializeProperties() {
+		coinTraded = "None";
+		action = "Fail";
+		quantity = 0;
+		price = 0;
 	}
 	
 	// for testing purposes
