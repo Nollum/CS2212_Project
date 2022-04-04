@@ -45,7 +45,7 @@ public class TableViewer {
 	 * createTableOutput method extracts the broker name, strategy, coin(s) traded, action, quantity, price, 
 	 * and date of the trade from the TradeResult resultsList in order to display them on the "Trader Actions" log
 	 * 
-	 * @param ArrayList<TradeResult> resultsList
+	 * @param resultsList (ArrayList of TradeResult objects)
 	 * @return JComponent
 	 */
 	public JComponent createTableOutput(ArrayList<TradeResult> resultsList) {
