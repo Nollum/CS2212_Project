@@ -1,0 +1,4 @@
+Instructions: The main method for running the program is located in “MainUI” in the UI package.
+
+The objective of this project is to implement a prototype system that provides users with the ability to create their own trading broker with their own set of cryptocurrency as well as a strategy from a set of predetermined strategies.
+The application allows the creation of trading brokers, each with its own trading strategy for each broker given their list of crypto that the broker is interested in. Crypto price data is retrieved from the CoinGecko API, and then notified to each broker with the crypto coin price in which they declared interest in. The application also includes a viewer interface, which consists of a table and histogram, of the overall trading log and trading activity of all the registered brokers.
