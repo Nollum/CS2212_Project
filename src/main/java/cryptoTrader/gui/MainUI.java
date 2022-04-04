@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 public class MainUI extends JFrame implements ActionListener {
 	/**
-	 * 
+	 * something to change later
 	 */
 	private static final long serialVersionUID = 1L;
 
