@@ -44,7 +44,7 @@ public class StrategyC implements StrategyInterface {
 	
 	/**
 	 * This method executes a trade according to a predefined set of rules. 
-	 * This performs a trade as follows: If the price of ADA > $3, and the price of BTC < $50, then buy 50 BTC
+	 * This performs a trade as follows: If the price of ADA > $1.5, and the price of BTC < $60000, then buy 50 BTC
 	 * @param trader This is the name of the trading broker that initiated this trade
 	 * @param coinList This is the list of coins that this strategy is interested in knowing the prices for performing a trade
 	 * @param coinPrices This is the list of prices corresponding to each coin in the list of coins in coinList
@@ -54,10 +54,10 @@ public class StrategyC implements StrategyInterface {
 		
 		initializeProperties();
 		
-		if (coinList.contains("BTC") && coinList.contains("ADA")) {
+		if (coinList.contains("BTC") && coinList.contains("ETH")) {
 			double btcPrice = coinPrices.get("BTC");
-			double adaPrice = coinPrices.get("ADA");		
-			if ((adaPrice > 3) && (btcPrice < 50)) {
+			double ethPrice = coinPrices.get("ETH");		
+			if ((ethPrice > 4000) && (btcPrice < 60000)) {
 				coinTraded = "BTC";
 				action = "Sell";
 				quantity = 50;
