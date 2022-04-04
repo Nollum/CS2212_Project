@@ -79,7 +79,7 @@ public class HistogramViewer implements ViewerInterface{
 				true);
 
 		ChartPanel chartPanel = new ChartPanel(barChart);
-		chartPanel.setPreferredSize(new Dimension(450, 300));
+		chartPanel.setPreferredSize(new Dimension(800, 300));
 		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		chartPanel.setBackground(Color.white);
 //		MainUI.getInstance().updateStats(chartPanel);

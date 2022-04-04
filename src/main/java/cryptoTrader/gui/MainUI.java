@@ -147,7 +147,7 @@ public class MainUI extends JFrame implements ActionListener {
 		remRow.setActionCommand("remTableRow");
 		remRow.addActionListener(this);
 
-		scrollPane.setPreferredSize(new Dimension(800, 300));
+		scrollPane.setPreferredSize(new Dimension(550, 300));
 		table.setFillsViewportHeight(true);
 		
 
@@ -166,7 +166,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 		// Set charts region
 		JPanel west = new JPanel();
-		west.setPreferredSize(new Dimension(1250, 650));
+		west.setPreferredSize(new Dimension(1050, 650));
 		stats = new JPanel();
 		stats.setLayout(new GridLayout(2, 2));
 
