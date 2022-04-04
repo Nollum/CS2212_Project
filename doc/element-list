@@ -1,6 +1,1 @@
-cryptoTrader.gui
-cryptoTrader.strategy
-cryptoTrader.tradeHandling
-cryptoTrader.tradeResult
-cryptoTrader.tradingBroker
-cryptoTrader.utils
+cryptoTrader.viewer

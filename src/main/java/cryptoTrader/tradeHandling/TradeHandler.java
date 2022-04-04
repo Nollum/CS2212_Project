@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import cryptoTrader.gui.MainUI;
 import cryptoTrader.strategy.StrategyFactory;
 import cryptoTrader.tradeResult.TradeResult;
 import cryptoTrader.tradeResult.TradeResultList;

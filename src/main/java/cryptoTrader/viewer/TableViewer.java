@@ -1,8 +1,6 @@
 package cryptoTrader.viewer;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -10,26 +8,6 @@ import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.axis.LogAxis;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.renderer.xy.XYSplineRenderer;
-import org.jfree.data.Range;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.time.Day;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
-
-import cryptoTrader.gui.MainUI;
 import cryptoTrader.tradeResult.TradeResult;
 
 /**
@@ -69,6 +47,13 @@ public class TableViewer implements ViewerInterface{
 		return scrollPane;
 	}
 	
+	/**
+	 * addResultsToTable returns the trading result data, including trader name, strategy, coin(s) traded, action, quantity, price, and date of the trade
+	 * @param resultsList
+	 * @param rowSize
+	 * @param colSize
+	 * @return Object[][]
+	 */
 	private Object[][] addResultsToTable(ArrayList<TradeResult> resultsList, int rowSize, int colSize){
 		Object[][] myData = new Object[rowSize][colSize];
 

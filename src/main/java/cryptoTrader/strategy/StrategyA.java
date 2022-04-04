@@ -2,12 +2,7 @@ package cryptoTrader.strategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-// import org.apache.commons.lang3.ArrayUtils; --> figure out how to do this to find array element index
-
 import cryptoTrader.tradeResult.TradeResult;
-import cryptoTrader.tradeResult.TradeResultList;
 
 /**
  * Creates a StrategyA object in a singleton design pattern

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"cryptoTrader.gui"},{"l":"cryptoTrader.strategy"},{"l":"cryptoTrader.tradeHandling"},{"l":"cryptoTrader.tradeResult"},{"l":"cryptoTrader.tradingBroker"},{"l":"cryptoTrader.utils"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"cryptoTrader.viewer"}]
