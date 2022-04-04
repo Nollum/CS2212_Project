@@ -35,7 +35,7 @@ public class DataVisualizationCreator {
 	
 	public void createCharts(ArrayList<TradeResult> resultsList) {
 //		createTextualOutput();
-		createTableOutput(resultsList);
+		createTableOutput(resultsList); // tableViewer.createTableOutput;
 //		createTimeSeries();
 //		createScatter();
 		//createBar(resultsList);
