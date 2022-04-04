@@ -1,6 +1,7 @@
 package cryptoTrader.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -128,6 +130,7 @@ public class MainUI extends JFrame implements ActionListener {
 		dtm = new DefaultTableModel(new Object[] { "Trading Client", "Coin List", "Strategy Name" }, 1);
 		table = new JTable(dtm);
 		// table.setPreferredSize(new Dimension(600, 300));
+		table.setGridColor(new Color(102, 102, 102));
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Trading Client Actions",
 				TitledBorder.CENTER, TitledBorder.TOP));
@@ -136,7 +139,6 @@ public class MainUI extends JFrame implements ActionListener {
 		strategyNames.add("Strategy-A");
 		strategyNames.add("Strategy-B");
 		strategyNames.add("Strategy-C");
-		//strategyNames.add("Strategy-D");
 		TableColumn strategyColumn = table.getColumnModel().getColumn(2);
 		JComboBox comboBox = new JComboBox(strategyNames);
 		strategyColumn.setCellEditor(new DefaultCellEditor(comboBox));
