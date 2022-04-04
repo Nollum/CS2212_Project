@@ -143,7 +143,6 @@ public class TradeHandler implements TradeHandlerInterface {
 
 		for (String coin : consolidatedCoinList) {
 			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
-			//System.out.println(coin + ": " + price);
 			coinPrices.put(coin, price);
 		}
 		
@@ -154,6 +153,5 @@ public class TradeHandler implements TradeHandlerInterface {
 	public static void main(String[] args) {
 		TradeHandler instance = TradeHandler.getInstance();
 		System.out.println(instance.availableCryptos.getCryptoID("BTC"));
-//		System.out.println("Price: " + instance.fetchCoinData(null));
 	}
 }
