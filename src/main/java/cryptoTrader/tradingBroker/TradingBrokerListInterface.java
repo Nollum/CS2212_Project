@@ -28,4 +28,9 @@ public interface TradingBrokerListInterface {
 	 */
 	public void removeBroker(String brokerName);
 	
+	/**
+	 * clear() method is used by the TradeHandler to clear out the brokerList whenever a user edit is made
+	 */
+	public void clear();
+	
 }
