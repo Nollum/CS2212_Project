@@ -27,4 +27,6 @@ public interface StrategyInterface {
 	 */
 	abstract String getStrategyName();
 	
+	abstract void initializeProperties();
+	
 }

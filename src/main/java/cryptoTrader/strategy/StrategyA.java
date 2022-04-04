@@ -45,10 +45,7 @@ public class StrategyA implements StrategyInterface {
 	private StrategyA () {
 		
 		strategyName = getStrategyName();
-		coinTraded = "None";
-		action = "Fail";
-		quantity = 0;
-		price = 0;
+		initializeProperties();
 	}
 
 	
@@ -62,6 +59,9 @@ public class StrategyA implements StrategyInterface {
 	 */
 	@Override
 	public TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices) {		
+		
+		initializeProperties();
+		
 		if (coinList.contains("BTC") && coinList.contains("ADA")) {
 			double btcPrice = coinPrices.get("BTC"); 
 			double adaPrice = coinPrices.get("ADA");	
@@ -84,6 +84,17 @@ public class StrategyA implements StrategyInterface {
 	@Override
 	public String getStrategyName() {
 		return "Strategy-A";
+	}
+	
+	/**
+	 * This method sets all the properties for a trade result to represent a fail state
+	 */
+	@Override
+	public void initializeProperties() {
+		coinTraded = "None";
+		action = "Fail";
+		quantity = 0;
+		price = 0;
 	}
 	
 	// for testing purposes
