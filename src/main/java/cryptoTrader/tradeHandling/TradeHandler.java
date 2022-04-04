@@ -108,43 +108,47 @@ public class TradeHandler {
 			MainUI.getInstance().duplicateError(duplicateBrokers);
 		}
 		
-		tradingBrokerList.clear();
+		updateBrokersList(brokers, tradingBrokerList, coinMatrix, strategies);
 		
-		StrategyFactory stratFact = new StrategyFactory();
-		
-		for (int index = 0; index < brokers.size(); index++) {
-			tradingBrokerList.addBroker(new TradingBroker(brokers.get(index), 
-										coinMatrix.get(index), 
-										stratFact.createStrategy(strategies.get(index))));
-		}
+//		tradingBrokerList.clear();
+//		
+//		StrategyFactory stratFact = new StrategyFactory();
+//		
+//		for (int index = 0; index < brokers.size(); index++) {
+//			tradingBrokerList.addBroker(new TradingBroker(brokers.get(index), 
+//										coinMatrix.get(index), 
+//										stratFact.createStrategy(strategies.get(index))));
+//		}
 		
 		HashSet<String> consolidatedCoinList = consolidateCoins(coinMatrix);
 		
 		HashMap<String, Double> coinPrices = new HashMap<String, Double>();
 		
-		//https://www.tutorialkart.com/java/how-to-get-current-date-in-mm-dd-yyyy-format-in-java/
-		LocalDate dateObj = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-        String currentDate = dateObj.format(formatter);
-        
-		for (String coin : consolidatedCoinList) {
-			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
-			
-			//DEBUGGING STATEMENT
-//			System.out.println(coin + ": " + price);
-			
-			coinPrices.put(coin, price);
-		}
+		coinPrices = getCoinPrices(consolidatedCoinList);
+		
+//		//https://www.tutorialkart.com/java/how-to-get-current-date-in-mm-dd-yyyy-format-in-java/
+//		LocalDate dateObj = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+//        String currentDate = dateObj.format(formatter);
+//        
+//		for (String coin : consolidatedCoinList) {
+//			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
+//			
+//			//DEBUGGING STATEMENT
+////			System.out.println(coin + ": " + price);
+//			
+//			coinPrices.put(coin, price);
+//		}
 	
 		for (TradingBroker broker : tradingBrokerList.getBrokers()) {
 			
 			// to only pass the appropriate coin prices to the broker's strategy
-			HashMap<String, Double> appropriateCoins = new HashMap<String, Double>();	
+			HashMap<String, Double> appropriateCoinPrices = new HashMap<String, Double>();	
 			for (String coin : broker.getCoinList()) {
-				appropriateCoins.put(coin, coinPrices.get(coin));
+				appropriateCoinPrices.put(coin, coinPrices.get(coin));
 			}
 			
-			TradeResult result = broker.getStrategy().performTrade(broker.getBrokerName(), broker.getCoinList(), appropriateCoins);
+			TradeResult result = broker.getStrategy().performTrade(broker.getBrokerName(), broker.getCoinList(), appropriateCoinPrices);
 //			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
 			tradeResultList.addResult(result);
 		}
@@ -167,7 +171,7 @@ public class TradeHandler {
 	 * @param ArrayList<String[]> coinMatrix
 	 * @param ArrayList<String> strategies
 	 */
-	public void updateBrokers(ArrayList<String> brokers, TradingBrokerList tradingBrokerList, ArrayList<String[]> coinMatrix, 
+	private void updateBrokersList(ArrayList<String> brokers, TradingBrokerList tradingBrokerList, ArrayList<String[]> coinMatrix, 
 			ArrayList<String> strategies) {
 		
 		// clearing the brokerlist to create the new updated list
@@ -180,8 +184,27 @@ public class TradeHandler {
 										coinMatrix.get(i), 
 										stratFact.createStrategy(strategies.get(i))));
 		}
+				
+	}
+	
+	private HashMap<String, Double> getCoinPrices(HashSet<String> consolidatedCoinList){
 		
+		HashMap<String, Double> coinPrices = new HashMap<String, Double>();
 		
+		//https://www.tutorialkart.com/java/how-to-get-current-date-in-mm-dd-yyyy-format-in-java/
+				LocalDate dateObj = LocalDate.now();
+		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		        String currentDate = dateObj.format(formatter);
 		
+		for (String coin : consolidatedCoinList) {
+			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
+			
+			//DEBUGGING STATEMENT
+//			System.out.println(coin + ": " + price);
+			
+			coinPrices.put(coin, price);
+		}
+		
+		return coinPrices;
 	}
 }
