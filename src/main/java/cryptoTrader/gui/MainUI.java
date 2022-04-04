@@ -207,13 +207,13 @@ public class MainUI extends JFrame implements ActionListener {
 	 * added to the table.
 	 * @param duplicates the set of duplicate trader names
 	 */
-	public void duplicateError(HashSet<String> duplicates) {
-		for (String duplicate : duplicates) {
-			JOptionPane.showMessageDialog(this, "Trading broker with name " + duplicate 
-					+ " was not added. Please ensure that trading broker names are unique." );
-		}
-		
-	}
+//	public void duplicateError(HashSet<String> duplicates) {
+//		for (String duplicate : duplicates) {
+//			JOptionPane.showMessageDialog(this, "Trading broker with name " + duplicate 
+//					+ " was not added. Please ensure that trading broker names are unique." );
+//		}
+//		
+//	}
 
 	/**
 	 * actionPerformed validates user input on an ActionEvent. 
@@ -257,10 +257,14 @@ public class MainUI extends JFrame implements ActionListener {
 //					} else {
 //						System.out.println("Duplicate trader names are not allowed");
 //					}
-					
-					brokers.add(traderName);
-					coins.add(coinNames);
-					strategies.add(strategyName);
+					if (brokers.contains(traderName)) {
+						JOptionPane.showMessageDialog(this, "Trading broker with name " + traderName 
+								+ " was not added. Please ensure that trading broker names are unique." );
+					} else {
+						brokers.add(traderName);
+						coins.add(coinNames);
+						strategies.add(strategyName);
+					}
 	        }
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
 //			DataVisualizationCreator creator = new DataVisualizationCreator();

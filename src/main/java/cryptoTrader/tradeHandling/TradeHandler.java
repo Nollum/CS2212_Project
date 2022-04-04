@@ -65,12 +65,12 @@ public class TradeHandler {
 	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
 		//System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
 				
-		HashSet<String> duplicateBrokers = getDuplicates(brokers);
-		
-		if (duplicateBrokers.size() != 0) {
-			brokers.removeAll(duplicateBrokers);
-			MainUI.getInstance().duplicateError(duplicateBrokers);
-		}
+//		HashSet<String> duplicateBrokers = getDuplicates(brokers);
+//		
+//		if (duplicateBrokers.size() != 0) {
+//			brokers.removeAll(duplicateBrokers);
+//			MainUI.getInstance().duplicateError(duplicateBrokers);
+//		}
 		
 		updateBrokersList(brokers, tradingBrokerList, coinMatrix, strategies);		
 		HashSet<String> consolidatedCoinList = consolidateCoins(coinMatrix);		
