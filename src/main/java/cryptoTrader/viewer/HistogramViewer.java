@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -34,23 +35,50 @@ import cryptoTrader.tradeResult.TradeResult;
 
 public class HistogramViewer {
 	
-	private static void parseResults() {
+	private static HashMap<ArrayList<String>, Integer> parseResults(ArrayList<TradeResult> resultsList) {
+		HashMap<ArrayList<String>, Integer> data = new HashMap<ArrayList<String>, Integer>();
 		
+		for (TradeResult result : resultsList) {
+			String broker = result.getTraderName();
+			String strategy = result.getStrategyName();
+			
+			ArrayList<String> key = new ArrayList<String>();
+			key.add(broker);
+			key.add(strategy);
+			
+			if (data.containsKey(key)) {
+				if (!result.getAction().equals("Fail")) {
+					data.put(key, data.get(key) + 1);
+				}
+			} else {
+				if (!result.getAction().equals("Fail")) {
+					data.put(key, 1);
+				} else {
+					data.put(key, 0);
+				}
+			}
+		}
+		
+		return data;
 	}
 	
 	public JComponent createBar(ArrayList<TradeResult> resultsList) {
 		
 		// parse resultsList
-		
+		HashMap<ArrayList<String>, Integer> parsedData = parseResults(resultsList);
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 //		Those are hard-coded values!!!! 
 //		You will have to come up with a proper datastructure to populate the BarChart with live data!
-		dataset.setValue(6, "Trader-1", "Strategy-A");
-		dataset.setValue(5, "Trader-2", "Strategy-B");
-		dataset.setValue(0, "Trader-3", "Strategy-E");
-		dataset.setValue(1, "Trader-4", "Strategy-C");
-		dataset.setValue(10, "Trader-5", "Strategy-D");
+		
+		for (ArrayList<String> key : parsedData.keySet()) {
+			dataset.setValue(parsedData.get(key), key.get(0), key.get(1));
+		}
+//		dataset.setValue(6, "Trader-1", "Strategy-A");
+//		dataset.setValue(5, "Trader-2", "Strategy-B");
+//		dataset.setValue(0, "Trader-3", "Strategy-E");
+//		dataset.setValue(1, "Trader-4", "Strategy-C");
+//		dataset.setValue(10, "Trader-5", "Strategy-D");
 
 		CategoryPlot plot = new CategoryPlot();
 		BarRenderer barrenderer1 = new BarRenderer();

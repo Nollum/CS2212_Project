@@ -55,9 +55,13 @@ public class StrategyB implements StrategyInterface {
 	public TradeResult performTrade(String trader, ArrayList<String> coinList, HashMap<String, Double> coinPrices) {
 		
 		if (coinList.contains("ADA") && coinList.contains("ETH")) {
+			
 			double ethPrice = coinPrices.get("ETH");
 			double adaPrice = coinPrices.get("ADA");
-			if ((adaPrice < 2) && (ethPrice < 3600)) { // change to 3500
+			System.out.println(ethPrice);
+			System.out.println(adaPrice);
+			if ((adaPrice < 2) && (ethPrice < 4500)) { // change to 3500
+				System.out.println("HERE");
 				coinTraded = "ADA";
 				action = "Buy";
 				quantity = (int) (1000 / adaPrice);

@@ -102,8 +102,8 @@ public class DataVisualizationCreator {
 		};
 		
 		
-		System.out.println(data[0][0]);
-		System.out.println(myData[0][0]);
+
+
 
 		JTable table = new JTable(myData, columnNames);
 		//table.setPreferredSize(new Dimension(600, 300));
