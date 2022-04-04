@@ -42,14 +42,19 @@ import cryptoTrader.tradeResult.TradeResult;
 public class DataVisualizationCreator {
 	
 	public void createCharts(ArrayList<TradeResult> resultsList) {
-//		createTextualOutput();
-		JComponent table = createTableOutput(resultsList); // tableViewer.createTableOutput;
+		
+		ViewerInterface tableViewer = new TableViewer();
+		JComponent table = tableViewer.createOutput(resultsList);
+
+		ViewerInterface hist = new HistogramViewer();
+		JComponent chart = hist.createOutput(resultsList);
+		
+//		createTextualOutput();		
 //		createTimeSeries();
-//		createScatter();
-//		JComponent chart = createBar(resultsList);
-		HistogramViewer hist = new HistogramViewer();
-		JComponent chart = hist.createBar(resultsList);
+//		createScatter();		
+		
 		JComponent[] components = {table, chart};
+
 		MainUI.getInstance().updateStats(components);
 	}
 
@@ -72,61 +77,6 @@ public class DataVisualizationCreator {
 //		MainUI.getInstance().updateStats(scrollPane);
 	}
 	
-	private JComponent createTableOutput(ArrayList<TradeResult> resultsList) {
-		// Dummy dates for demo purposes. These should come from selection menu
-		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
-		int colSize = columnNames.length;
-		int rowSize = resultsList.size();
-		Object[][] myData = new Object[rowSize][colSize];
-		
-		int row = 0;
-		for (TradeResult result : resultsList) {
-			// fill in method for creating the data object
-			myData[row][0] = result.getTraderName();
-			myData[row][1] = result.getStrategyName();
-			myData[row][2] = result.getCoinTraded();
-			myData[row][3] = result.getAction();
-			myData[row][4] = result.getQuantity();
-			myData[row][5] = result.getPrice();
-			myData[row][6] = result.getDate();
-			row = row + 1;
-		}
-		
-		// Dummy data for demo purposes. These should come from actual fetcher
-		Object[][] data = {
-				{"Trader-1", "Strategy-A", "ETH", "Buy", "500", "150.3","13-January-2022"},
-				{"Trader-2", "Strategy-B", "BTC", "Sell", "200", "50.2","13-January-2022"},
-				{"Trader-3", "Strategy-C", "USDT", "Buy", "1000", "2.59","15-January-2022"},
-				{"Trader-1", "Strategy-A", "USDC", "Buy", "500", "150.3","16-January-2022"},
-				{"Trader-2", "Strategy-B", "ADA", "Sell", "200", "50.2","16-January-2022"},
-				{"Trader-3", "Strategy-C", "SOL", "Buy", "1000", "2.59","17-January-2022"},
-				{"Trader-1", "Strategy-A", "ONE", "Buy", "500", "150.3","17-January-2022"},
-				{"Trader-2", "Strategy-B", "MANA", "Sell", "200", "50.2","17-January-2022"},
-				{"Trader-3", "Strategy-C", "AVAX", "Buy", "1000", "2.59","19-January-2022"},
-				{"Trader-1", "Strategy-A", "LUNA", "Buy", "500", "150.3","19-January-2022"},
-				{"Trader-2", "Strategy-B", "FTM", "Sell", "200", "50.2","19-January-2022"},
-				{"Trader-3", "Strategy-C", "HNT", "Buy", "1000", "2.59","20-January-2022"}
-		};
-		
-
-
-		JTable table = new JTable(myData, columnNames);
-		//table.setPreferredSize(new Dimension(600, 300));
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBorder (BorderFactory.createTitledBorder (BorderFactory.createEtchedBorder (),
-                "Trader Actions",
-                TitledBorder.CENTER,
-                TitledBorder.TOP));
-		
-	
-		
-		scrollPane.setPreferredSize(new Dimension(800, 300));
-		table.setFillsViewportHeight(true);
-		
-		return scrollPane;
-//		MainUI.getInstance().updateStats(scrollPane);
-	}
 
 	private void createTimeSeries() {
 		TimeSeries series1 = new TimeSeries("Bitcoin - Daily");
@@ -225,43 +175,6 @@ public class DataVisualizationCreator {
 		chartPanel.setPreferredSize(new Dimension(600, 300));
 		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		chartPanel.setBackground(Color.white);
-//		MainUI.getInstance().updateStats(chartPanel);
-	}
-	
-	private JComponent createBar(ArrayList<TradeResult> resultsList) {
-		
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//		Those are hard-coded values!!!! 
-//		You will have to come up with a proper datastructure to populate the BarChart with live data!
-		dataset.setValue(6, "Trader-1", "Strategy-A");
-		dataset.setValue(5, "Trader-2", "Strategy-B");
-		dataset.setValue(0, "Trader-3", "Strategy-E");
-		dataset.setValue(1, "Trader-4", "Strategy-C");
-		dataset.setValue(10, "Trader-5", "Strategy-D");
-
-		CategoryPlot plot = new CategoryPlot();
-		BarRenderer barrenderer1 = new BarRenderer();
-
-		plot.setDataset(0, dataset);
-		plot.setRenderer(0, barrenderer1);
-		CategoryAxis domainAxis = new CategoryAxis("Strategy");
-		plot.setDomainAxis(domainAxis);
-		NumberAxis rangeAxis = new NumberAxis("Actions(Buys or Sells)");
-		rangeAxis.setRange(new Range(0.1, 20.0));
-		plot.setRangeAxis(rangeAxis);
-
-		//plot.mapDatasetToRangeAxis(0, 0);// 1st dataset to 1st y-axis
-		//plot.mapDatasetToRangeAxis(1, 1); // 2nd dataset to 2nd y-axis
-
-		JFreeChart barChart = new JFreeChart("Actions Performed By Traders So Far", new Font("Serif", java.awt.Font.BOLD, 18), plot,
-				true);
-
-		ChartPanel chartPanel = new ChartPanel(barChart);
-		chartPanel.setPreferredSize(new Dimension(600, 300));
-		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		chartPanel.setBackground(Color.white);
-		
-		return chartPanel;
 //		MainUI.getInstance().updateStats(chartPanel);
 	}
 
