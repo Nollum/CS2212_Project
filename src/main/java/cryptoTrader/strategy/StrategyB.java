@@ -57,16 +57,13 @@ public class StrategyB implements StrategyInterface {
 			
 			double ethPrice = coinPrices.get("ETH");
 			double adaPrice = coinPrices.get("ADA");
-			//System.out.println(ethPrice);
-			//System.out.println(adaPrice);
 			if ((adaPrice < 2) && (ethPrice < 4500)) { 
-				//System.out.println("HERE");
 				coinTraded = "ADA";
 				action = "Buy";
 				quantity = (int) (1000 / adaPrice);
 				price = quantity * adaPrice;
 			}
-		}
+		} 
 		
 		TradeResult result = new TradeResult(trader, strategy, coinTraded, action, quantity, price);
 		return result;

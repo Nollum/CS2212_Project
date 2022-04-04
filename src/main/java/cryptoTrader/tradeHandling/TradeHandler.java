@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import cryptoTrader.gui.MainUI;
 import cryptoTrader.strategy.StrategyFactory;
 import cryptoTrader.tradeResult.TradeResult;
 import cryptoTrader.tradeResult.TradeResultList;
@@ -55,9 +56,6 @@ public class TradeHandler implements TradeHandlerInterface {
 		tradingBrokerList = TradingBrokerList.getInstance();
 		tradeResultList = TradeResultList.getInstance();
 		availableCryptos = AvailableCryptoList.getInstance();
-		// Debug message
-		//System.out.println("Trade Handler is setup and active");
-
 	}
 		
 	/**
@@ -68,20 +66,9 @@ public class TradeHandler implements TradeHandlerInterface {
 	 * @param ArrayList<String> strategies
 	 */
 	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
-		//System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
-				
-//		HashSet<String> duplicateBrokers = getDuplicates(brokers);
-//		
-//		if (duplicateBrokers.size() != 0) {
-//			brokers.removeAll(duplicateBrokers);
-//			MainUI.getInstance().duplicateError(duplicateBrokers);
-//		}
 		
 		updateBrokersList(brokers, tradingBrokerList, coinMatrix, strategies);		
 		HashSet<String> consolidatedCoinList = consolidateCoins(coinMatrix);		
-		//HashMap<String, Double> coinPrices = new HashMap<String, Double>();		
-		//coinPrices = getCoinPrices(consolidatedCoinList);
-		
 		HashMap<String, Double> coinPrices = getCoinPrices(consolidatedCoinList);
 		
 		for (TradingBroker broker : tradingBrokerList.getBrokers()) {
@@ -93,28 +80,13 @@ public class TradeHandler implements TradeHandlerInterface {
 			}
 			
 			TradeResult result = broker.getStrategy().performTrade(broker.getBrokerName(), broker.getCoinList(), appropriateCoinPrices);
-//			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
+			if (result.getAction().equals("Fail")) {
+				MainUI.getInstance().displayError("Strategy for trader " + result.getTraderName() + 
+						" was not executed due to information missing and/or strategy rules not being met.");
+			}
 			tradeResultList.addResult(result);
 		}
 	}
-	
-	/**
-	 * Finds and returns the list of duplicate broker names
-	 * @param ArrayList<String> brokers the list of broker names
-	 * @return HashSet<String> the list of broker names that were duplicates
-	 */
-	private static HashSet<String> getDuplicates(ArrayList<String> brokers) {
-		HashSet<String> duplicates = new HashSet<String>();
-		for(int i = 0; i < brokers.size(); i++) {
-			for(int j = i + 1; j < brokers.size(); j++) {
-		  		if(j != i && brokers.get(j).equals(brokers.get(i)) ) {
-		  			duplicates.add(brokers.get(i));
-				}
-			}
-		}
-		return duplicates;
-	}
-	
 	
 	/**
 	 * creates a hashset of unique coins from all the coins lists passed as a matrix
@@ -171,7 +143,6 @@ public class TradeHandler implements TradeHandlerInterface {
 
 		for (String coin : consolidatedCoinList) {
 			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
-			//System.out.println(coin + ": " + price);
 			coinPrices.put(coin, price);
 		}
 		
@@ -182,6 +153,5 @@ public class TradeHandler implements TradeHandlerInterface {
 	public static void main(String[] args) {
 		TradeHandler instance = TradeHandler.getInstance();
 		System.out.println(instance.availableCryptos.getCryptoID("BTC"));
-//		System.out.println("Price: " + instance.fetchCoinData(null));
 	}
 }
