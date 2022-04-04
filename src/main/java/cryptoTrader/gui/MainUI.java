@@ -34,10 +34,14 @@ import cryptoTrader.viewer.DataVisualizationCreator;
 
 import java.util.ArrayList;
 
+/**
+ * MainUI class creates the main GUI user interface for the application.
+ * 
+ * @author Professor Kontogiannis
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ */
+
 public class MainUI extends JFrame implements ActionListener {
-	/**
-	 * something to change later
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private static MainUI instance;
@@ -45,9 +49,7 @@ public class MainUI extends JFrame implements ActionListener {
 
 	// Should be a reference to a separate object in actual implementation
 	private List<String> selectedList;
-
 	private JTextArea selectedTickerList;
-//	private JTextArea tickerList;
 	private JTextArea tickerText;
 	private JTextArea BrokerText;
 	private JComboBox<String> strategyList;
@@ -58,6 +60,10 @@ public class MainUI extends JFrame implements ActionListener {
 	private DefaultTableModel dtm;
 	private JTable table;
 
+	/**
+	 * getInstance method creates an instance of the MainUI 
+	 * @return MainUI object
+	 */
 	public static MainUI getInstance() {
 		if (instance == null)
 			instance = new MainUI();
@@ -65,6 +71,9 @@ public class MainUI extends JFrame implements ActionListener {
 		return instance;
 	}
 
+	/**
+	 * MainUI constructor is made up of all JComponents necessary for the application GUI
+	 */
 	private MainUI() {
 
 		// Set window title
@@ -170,6 +179,10 @@ public class MainUI extends JFrame implements ActionListener {
 //		getContentPane().add(west, BorderLayout.WEST);
 	}
 
+	/**
+	 * updateStats method clears, revalidates, and adds the JComponents of the GUI
+	 * @param JComponent[] components
+	 */
 	public void updateStats(JComponent[] components) {
 		stats.removeAll();
 		stats.revalidate();
@@ -179,6 +192,9 @@ public class MainUI extends JFrame implements ActionListener {
 		stats.revalidate();
 	}
 
+	/**
+	 * main method creates an instance of the JFrame, sets the size and visibility to true
+	 */
 	public static void main(String[] args) {
 		JFrame frame = MainUI.getInstance();
 		frame.setSize(900, 600);
@@ -199,6 +215,12 @@ public class MainUI extends JFrame implements ActionListener {
 		
 	}
 
+	/**
+	 * actionPerformed validates user input on an ActionEvent. 
+	 * It checks if the user input a trader name, cryptocoin, and strategy for each client row.
+	 * It also adds and removes rows on the client list.
+	 * @param ActionEvent e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

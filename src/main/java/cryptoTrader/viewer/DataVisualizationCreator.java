@@ -32,6 +32,13 @@ import org.jfree.data.time.TimeSeriesCollection;
 import cryptoTrader.gui.MainUI;
 import cryptoTrader.tradeResult.TradeResult;
 
+/**
+ * DataVisualizationCreator class composes the panel of the GUI consisting of trading data
+ * 
+ * @author Professor Kontogiannis
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ */
+
 public class DataVisualizationCreator {
 	
 	public void createCharts(ArrayList<TradeResult> resultsList) {
@@ -101,8 +108,6 @@ public class DataVisualizationCreator {
 				{"Trader-3", "Strategy-C", "HNT", "Buy", "1000", "2.59","20-January-2022"}
 		};
 		
-		
-
 
 
 		JTable table = new JTable(myData, columnNames);

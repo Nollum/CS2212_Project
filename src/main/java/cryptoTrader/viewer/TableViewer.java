@@ -32,9 +32,22 @@ import org.jfree.data.time.TimeSeriesCollection;
 import cryptoTrader.gui.MainUI;
 import cryptoTrader.tradeResult.TradeResult;
 
-
+/**
+ * TableViewer class composes the table panel of the application consisting of completed trade results
+ * 
+ * @author Professor Kontogiannis
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ */
 public class TableViewer {
 
+	
+	/**
+	 * createTableOutput method extracts the broker name, strategy, coin(s) traded, action, quantity, price, 
+	 * and date of the trade from the TradeResult resultsList in order to display them on the "Trader Actions" log
+	 * 
+	 * @param ArrayList<TradeResult> resultsList
+	 * @return JComponent
+	 */
 	public JComponent createTableOutput(ArrayList<TradeResult> resultsList) {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
@@ -72,8 +85,6 @@ public class TableViewer {
 		};
 		
 		
-		
-
 		JTable table = new JTable(data, columnNames);
 		//table.setPreferredSize(new Dimension(600, 300));
 		

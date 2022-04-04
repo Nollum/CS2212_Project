@@ -14,10 +14,21 @@ import com.google.gson.JsonParser;
 
 import cryptoTrader.tradeHandling.TradeHandler;
 
+/**
+ * DataFetcher class connects to the CoinGecko API to extract crypto data for the application
+ * 
+ * @author Professor Kontogiannis
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ */
+
 public class DataFetcher {
 	
 	private static DataFetcher instance;
 	
+	/**
+	 * getInstance creates a new instance of DataFetcher
+	 * @return DataFetcher
+	 */
 	public static DataFetcher getInstance() {
 		if (instance == null)
 			instance = new DataFetcher();
@@ -25,6 +36,12 @@ public class DataFetcher {
 		return instance;
 	}
 
+	/**
+	 * getDataForCrypto method makes an HTTP request call to the CoinGecko API
+	 * @param String id
+	 * @param String date
+	 * @return JsonObject
+	 */
 	private JsonObject getDataForCrypto(String id, String date) {
 
 		String urlString = String.format(
@@ -53,6 +70,12 @@ public class DataFetcher {
 		return null;
 	}
 	
+	/**
+	 * getPriceForCoin returns the price data of a crypto coin on a certain day
+	 * @param String id
+	 * @param String date
+	 * @return double price
+	 */
 	public double getPriceForCoin(String id, String date) {
 		double price = 0.0;
 		
@@ -66,6 +89,12 @@ public class DataFetcher {
 		return price;
 	}
 	
+	/**
+	 * getMarketCapForCoin returns the market data of a crypto coin on a certain day
+	 * @param String id
+	 * @param String date
+	 * @return double marketCap
+	 */
 	public double getMarketCapForCoin(String id, String date) {
 		double marketCap = 0.0;
 		
@@ -79,6 +108,12 @@ public class DataFetcher {
 		return marketCap;
 	}
 	
+	/**
+	 * getVolumeForCoin returns the volume data of a crypto coin on a certain day
+	 * @param String id
+	 * @param String date
+	 * @return double volume
+	 */
 	public double getVolumeForCoin(String id, String date) {
 		double volume = 0.0;
 		

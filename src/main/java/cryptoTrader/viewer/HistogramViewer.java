@@ -33,8 +33,21 @@ import org.jfree.data.time.TimeSeriesCollection;
 import cryptoTrader.gui.MainUI;
 import cryptoTrader.tradeResult.TradeResult;
 
+/**
+ * HistogramViewer class composes the graph panel of the application consisting of completed trade results
+ * 
+ * @author Professor Kontogiannis
+ * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
+ */
+
 public class HistogramViewer {
 	
+	/**
+	 * parseResults method extracts the broker name and their associated strategy from the resultsList,
+	 * parsing them into a HashMap for the histogram
+	 * @param resultsList
+	 * @return HashMap<ArrayList<String>, Integer>
+	 */
 	private static HashMap<ArrayList<String>, Integer> parseResults(ArrayList<TradeResult> resultsList) {
 		HashMap<ArrayList<String>, Integer> data = new HashMap<ArrayList<String>, Integer>();
 		
@@ -62,6 +75,11 @@ public class HistogramViewer {
 		return data;
 	}
 	
+	/**
+	 * createBar method takes the parsed results of the resultsList and creates the chart panel on the front-end
+	 * @param ArrayList<TradeResult> resultsList
+	 * @return JComponent
+	 */
 	public JComponent createBar(ArrayList<TradeResult> resultsList) {
 		
 		// parse resultsList

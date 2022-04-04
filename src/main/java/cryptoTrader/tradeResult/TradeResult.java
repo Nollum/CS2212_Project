@@ -25,7 +25,7 @@ public class TradeResult {
 	 * @param String coinTraded
 	 * @param String action 
 	 * @param int quantity
-	 * @paramdouble price
+	 * @param double price
 	 */
 	public TradeResult(String trader, String strategy, String coinTraded, 
 			String action, int quantity, double price) 

@@ -14,12 +14,22 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+/**
+ * AvailableCryptoList class connects with the crypto API to find available crypto for trade
+ * 
+ * @author Professor Kontogiannis
+ */
+
 public class AvailableCryptoList {
 	private static AvailableCryptoList instance = null;
 	
 	private Map<String, String> availableCryptosMap = new HashMap<>();
 	private List<String> availableCryptosList = new ArrayList<>();
 	
+	/**
+	 * getInstance method creates an instance of AvailableCryptoList
+	 * @return AvailableCryptoList
+	 */
 	public static AvailableCryptoList getInstance() {
 		if (instance == null)
 			instance = new AvailableCryptoList();
@@ -27,10 +37,14 @@ public class AvailableCryptoList {
 		return instance;
 	}
 	
+	/**
+	 * AvailableCryptoList constructor calls the findAvailableCryptos method
+	 */
 	private AvailableCryptoList() {
 		findAvailableCryptos();
 	}
 	
+
 	public void call() {
 		String urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=VNEY4VV2AWF1EB51";
 		try {
@@ -66,6 +80,11 @@ public class AvailableCryptoList {
 		}
 	}
 	
+	/**
+	 * findAvailableCryptos method makes a HTTP connection request with the CoinGecko API.
+	 * It extracts the available crypto coins information, adding their ID & ticker to the availableCryptosMap.
+	 * It adds the crypto coin name to the availableCryptosList.
+	 */
 	private void findAvailableCryptos() {
 
 		String urlString = 
@@ -106,10 +125,19 @@ public class AvailableCryptoList {
 		}
 	}
 	
+	/**
+	 * getAvailableCryptos returns the list of available crypto names from the previous API call
+	 * @return String[] of the available crypto names called from the API 
+	 */
 	public String[] getAvailableCryptos() {
 		return availableCryptosList.toArray(new String[availableCryptosList.size()]);
 	}
 	
+	/**
+	 * getCryptoID gets the associated crypto ID and ticker from the cryptoName
+	 * @param String cryptoName
+	 * @return String
+	 */
 	public String getCryptoID(String cryptoName) {
 		return availableCryptosMap.get(cryptoName);
 	}
