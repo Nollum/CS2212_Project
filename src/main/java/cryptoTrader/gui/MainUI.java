@@ -170,9 +170,12 @@ public class MainUI extends JFrame implements ActionListener {
 //		getContentPane().add(west, BorderLayout.WEST);
 	}
 
-	public void updateStats(JComponent component) {
+	public void updateStats(JComponent[] components) {
 		stats.removeAll();
-		stats.add(component);
+		stats.revalidate();
+		for (JComponent component : components) {
+			stats.add(component);
+		}
 		stats.revalidate();
 	}
 
@@ -237,12 +240,9 @@ public class MainUI extends JFrame implements ActionListener {
 					coins.add(coinNames);
 					strategies.add(strategyName);
 	        }
-			
-			//stats.removeAll();
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
-			
-			DataVisualizationCreator creator = new DataVisualizationCreator();
-			//creator.createCharts();
+//			DataVisualizationCreator creator = new DataVisualizationCreator();
+//			creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
 			dtm.addRow(new String[3]);
 		} else if ("remTableRow".equals(command)) {

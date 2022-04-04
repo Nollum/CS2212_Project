@@ -40,12 +40,11 @@ public class TradeResultList implements TradeResultListInterface {
 	 */
 	@Override
 	public void addResult(TradeResult result) {
-		resultsList.add(result);
 		
+		resultsList.add(result);
 		// notify viewer
 		DataVisualizationCreator creator = new DataVisualizationCreator();
 		creator.createCharts(resultsList);
-//		creator.createCharts(resultsList);
 		
 	}
 }

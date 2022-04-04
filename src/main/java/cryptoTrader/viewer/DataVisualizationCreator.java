@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
@@ -35,10 +36,14 @@ public class DataVisualizationCreator {
 	
 	public void createCharts(ArrayList<TradeResult> resultsList) {
 //		createTextualOutput();
-		createTableOutput(resultsList); // tableViewer.createTableOutput;
+		JComponent table = createTableOutput(resultsList); // tableViewer.createTableOutput;
 //		createTimeSeries();
 //		createScatter();
-		//createBar(resultsList);
+//		JComponent chart = createBar(resultsList);
+		HistogramViewer hist = new HistogramViewer();
+		JComponent chart = hist.createBar(resultsList);
+		JComponent[] components = {table, chart};
+		MainUI.getInstance().updateStats(components);
 	}
 
 	private void createTextualOutput() {
@@ -60,7 +65,7 @@ public class DataVisualizationCreator {
 //		MainUI.getInstance().updateStats(scrollPane);
 	}
 	
-	private void createTableOutput(ArrayList<TradeResult> resultsList) {
+	private JComponent createTableOutput(ArrayList<TradeResult> resultsList) {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 		int colSize = columnNames.length;
@@ -112,9 +117,10 @@ public class DataVisualizationCreator {
 	
 		
 		scrollPane.setPreferredSize(new Dimension(800, 300));
-		table.setFillsViewportHeight(true);;
+		table.setFillsViewportHeight(true);
 		
-		MainUI.getInstance().updateStats(scrollPane);
+		return scrollPane;
+//		MainUI.getInstance().updateStats(scrollPane);
 	}
 
 	private void createTimeSeries() {
@@ -165,7 +171,7 @@ public class DataVisualizationCreator {
 		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		chartPanel.setBackground(Color.white);
 		
-		MainUI.getInstance().updateStats(chartPanel);
+//		MainUI.getInstance().updateStats(chartPanel);
 	}
 	
 	private void createScatter() {
@@ -214,10 +220,10 @@ public class DataVisualizationCreator {
 		chartPanel.setPreferredSize(new Dimension(600, 300));
 		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		chartPanel.setBackground(Color.white);
-		MainUI.getInstance().updateStats(chartPanel);
+//		MainUI.getInstance().updateStats(chartPanel);
 	}
 	
-	private void createBar(ArrayList<TradeResult> resultsList) {
+	private JComponent createBar(ArrayList<TradeResult> resultsList) {
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 //		Those are hard-coded values!!!! 
@@ -249,7 +255,9 @@ public class DataVisualizationCreator {
 		chartPanel.setPreferredSize(new Dimension(600, 300));
 		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		chartPanel.setBackground(Color.white);
-		MainUI.getInstance().updateStats(chartPanel);
+		
+		return chartPanel;
+//		MainUI.getInstance().updateStats(chartPanel);
 	}
 
 }

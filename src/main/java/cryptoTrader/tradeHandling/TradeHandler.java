@@ -100,12 +100,15 @@ public class TradeHandler {
 	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
 //		System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
 		
+		
 		HashSet<String> duplicateBrokers = getDuplicates(brokers);
 		
 		if (duplicateBrokers.size() != 0) {
 			brokers.removeAll(duplicateBrokers);
 			MainUI.getInstance().duplicateError(duplicateBrokers);
 		}
+		
+		tradingBrokerList.clear();
 		
 		StrategyFactory stratFact = new StrategyFactory();
 		
@@ -128,11 +131,11 @@ public class TradeHandler {
 			double price = dataFetcher.getPriceForCoin(availableCryptos.getCryptoID(coin), currentDate);
 			
 			//DEBUGGING STATEMENT
-			System.out.println(coin + ": " + price);
+//			System.out.println(coin + ": " + price);
 			
 			coinPrices.put(coin, price);
 		}
-		
+	
 		for (TradingBroker broker : tradingBrokerList.getBrokers()) {
 			
 			// to only pass the appropriate coin prices to the broker's strategy
@@ -142,7 +145,7 @@ public class TradeHandler {
 			}
 			
 			TradeResult result = broker.getStrategy().performTrade(broker.getBrokerName(), broker.getCoinList(), appropriateCoins);
-			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
+//			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
 			tradeResultList.addResult(result);
 		}
 

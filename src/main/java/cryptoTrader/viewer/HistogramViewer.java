@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
@@ -33,7 +34,14 @@ import cryptoTrader.tradeResult.TradeResult;
 
 public class HistogramViewer {
 	
-	public void createBar(ArrayList<TradeResult> resultsList) {
+	private static void parseResults() {
+		
+	}
+	
+	public JComponent createBar(ArrayList<TradeResult> resultsList) {
+		
+		// parse resultsList
+		
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 //		Those are hard-coded values!!!! 
@@ -65,7 +73,8 @@ public class HistogramViewer {
 		chartPanel.setPreferredSize(new Dimension(600, 300));
 		chartPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		chartPanel.setBackground(Color.white);
-		MainUI.getInstance().updateStats(chartPanel);
+//		MainUI.getInstance().updateStats(chartPanel);
+		return chartPanel;
 	}
 
 }

@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
@@ -34,7 +35,7 @@ import cryptoTrader.tradeResult.TradeResult;
 
 public class TableViewer {
 
-	public void createTableOutput(ArrayList<TradeResult> resultsList) {
+	public JComponent createTableOutput(ArrayList<TradeResult> resultsList) {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 		int colSize = columnNames.length;
@@ -87,6 +88,7 @@ public class TableViewer {
 		scrollPane.setPreferredSize(new Dimension(800, 300));
 		table.setFillsViewportHeight(true);;
 		
-		MainUI.getInstance().updateStats(scrollPane);
+		return scrollPane;
+//		MainUI.getInstance().updateStats(scrollPane);
 	}
 }
