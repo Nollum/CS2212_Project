@@ -174,6 +174,10 @@ public class MainUI extends JFrame implements ActionListener {
 		getContentPane().add(south, BorderLayout.SOUTH);
 //		getContentPane().add(west, BorderLayout.WEST);
 	}
+	
+	public void displayError(String error) {
+		JOptionPane.showMessageDialog(this, error);
+	}
 
 	/**
 	 * updateStats method clears, revalidates, and adds the JComponents of the GUI

@@ -66,7 +66,7 @@ public class StrategyB implements StrategyInterface {
 				quantity = (int) (1000 / adaPrice);
 				price = quantity * adaPrice;
 			}
-		}
+		} 
 		
 		TradeResult result = new TradeResult(trader, strategy, coinTraded, action, quantity, price);
 		return result;

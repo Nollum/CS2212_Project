@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import cryptoTrader.gui.MainUI;
 import cryptoTrader.strategy.StrategyFactory;
 import cryptoTrader.tradeResult.TradeResult;
 import cryptoTrader.tradeResult.TradeResultList;
@@ -69,13 +70,6 @@ public class TradeHandler implements TradeHandlerInterface {
 	 */
 	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
 		//System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
-				
-//		HashSet<String> duplicateBrokers = getDuplicates(brokers);
-//		
-//		if (duplicateBrokers.size() != 0) {
-//			brokers.removeAll(duplicateBrokers);
-//			MainUI.getInstance().duplicateError(duplicateBrokers);
-//		}
 		
 		updateBrokersList(brokers, tradingBrokerList, coinMatrix, strategies);		
 		HashSet<String> consolidatedCoinList = consolidateCoins(coinMatrix);		
@@ -94,6 +88,10 @@ public class TradeHandler implements TradeHandlerInterface {
 			
 			TradeResult result = broker.getStrategy().performTrade(broker.getBrokerName(), broker.getCoinList(), appropriateCoinPrices);
 //			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
+			if (result.getAction().equals("Fail")) {
+				MainUI.getInstance().displayError("Strategy for trader " + result.getTraderName() + 
+						" was not executed due to information missing and/or strategy rules not being met.");
+			}
 			tradeResultList.addResult(result);
 		}
 	}
