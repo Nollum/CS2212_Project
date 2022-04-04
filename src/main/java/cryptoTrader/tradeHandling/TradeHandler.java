@@ -100,7 +100,12 @@ public class TradeHandler {
 	public void initiateTrade(ArrayList<String> brokers, ArrayList<String[]> coinMatrix, ArrayList<String> strategies) {
 //		System.out.println(brokers.get(0) + " " + coins.get(0)[0] + " " + strategies.get(0));
 		
-		tradingBrokerList.clear();
+		HashSet<String> duplicateBrokers = getDuplicates(brokers);
+		
+		if (duplicateBrokers.size() != 0) {
+			brokers.removeAll(duplicateBrokers);
+			MainUI.getInstance().duplicateError(duplicateBrokers);
+		}
 		
 		StrategyFactory stratFact = new StrategyFactory();
 		
@@ -135,7 +140,6 @@ public class TradeHandler {
 			for (String coin : broker.getCoinList()) {
 				appropriateCoins.put(coin, coinPrices.get(coin));
 			}
-			System.out.println(broker.getCoinList());
 			
 			TradeResult result = broker.getStrategy().performTrade(broker.getBrokerName(), broker.getCoinList(), appropriateCoins);
 			System.out.println(result.getCoinTraded() + " " + result.getAction() + " " + result.getQuantity());
