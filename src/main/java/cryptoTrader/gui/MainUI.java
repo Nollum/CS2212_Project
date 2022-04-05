@@ -7,9 +7,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -23,7 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -37,22 +33,13 @@ import cryptoTrader.tradeHandling.TradeHandler;
  * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
  */
 
-public class MainUI extends JFrame implements ActionListener {
+public class MainUI extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
 	private static MainUI instance;
-	private JPanel stats, chartPanel, tablePanel;
+	private JPanel stats;
 
 	// Should be a reference to a separate object in actual implementation
-	private List<String> selectedList;
-	private JTextArea selectedTickerList;
-	private JTextArea tickerText;
-	private JTextArea BrokerText;
-	private JComboBox<String> strategyList;
-	private Map<String, List<String>> brokersTickers = new HashMap<>();
-	private Map<String, String> brokersStrategies = new HashMap<>();
-	private List<String> selectedTickers = new ArrayList<>();
-	private String selectedStrategy = "";
 	private DefaultTableModel dtm;
 	private JTable table;
 
@@ -200,19 +187,7 @@ public class MainUI extends JFrame implements ActionListener {
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
-	/**
-	 * Notifies the user that duplicate Trading Broker Names were
-	 * added to the table.
-	 * @param duplicates the set of duplicate trader names
-	 */
-//	public void duplicateError(HashSet<String> duplicates) {
-//		for (String duplicate : duplicates) {
-//			JOptionPane.showMessageDialog(this, "Trading broker with name " + duplicate 
-//					+ " was not added. Please ensure that trading broker names are unique." );
-//		}
-//		
-//	}
+
 
 	/**
 	 * actionPerformed validates user input on an ActionEvent. 
@@ -247,15 +222,7 @@ public class MainUI extends JFrame implements ActionListener {
 						return;
 					}
 					String strategyName = strategyObject.toString();
-					
-//					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
-//					if (!brokers.contains(traderName)) {
-//						brokers.add(traderName);
-//						coins.add(coinNames);
-//						strategies.add(strategyName);
-//					} else {
-//						System.out.println("Duplicate trader names are not allowed");
-//					}
+
 					if (brokers.contains(traderName)) {
 						JOptionPane.showMessageDialog(this, "Trading broker with name " + traderName 
 								+ " was not added. Please ensure that trading broker names are unique." );
