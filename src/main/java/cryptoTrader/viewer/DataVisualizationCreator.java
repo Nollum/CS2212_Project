@@ -13,7 +13,7 @@ import cryptoTrader.tradeResult.TradeResult;
  * @author Rustam Mamedov, Shruthi Sundararaman, Hanniya Zohdi
  */
 
-public class DataVisualizationCreator implements DataVisualizationCreatorInterface{
+public class DataVisualizationCreator implements DataVisualizationCreatorInterface {
 	
 	/**
 	 * createCharts method creates the table and histogram viewer on the front end and adds the resultsList

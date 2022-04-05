@@ -63,41 +63,7 @@ public class MainUI extends JFrame implements ActionListener{
 		super("Crypto Trading Tool");
 
 		// Set top bar
-
-
 		JPanel north = new JPanel();
-
-//		north.add(strategyList);
-
-		// Set bottom bar
-//		JLabel from = new JLabel("From");
-//		UtilDateModel dateModel = new UtilDateModel();
-//		Properties p = new Properties();
-//		p.put("text.today", "Today");
-//		p.put("text.month", "Month");
-//		p.put("text.year", "Year");
-//		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
-//		@SuppressWarnings("serial")
-//		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new AbstractFormatter() {
-//			private String datePatern = "dd/MM/yyyy";
-//
-//			private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePatern);
-//
-//			@Override
-//			public Object stringToValue(String text) throws ParseException {
-//				return dateFormatter.parseObject(text);
-//			}
-//
-//			@Override
-//			public String valueToString(Object value) throws ParseException {
-//				if (value != null) {
-//					Calendar cal = (Calendar) value;
-//					return dateFormatter.format(cal.getTime());
-//				}
-//
-//				return "";
-//			}
-//		});
 
 		JButton trade = new JButton("Perform Trade");
 		trade.setActionCommand("refresh");
@@ -110,7 +76,6 @@ public class MainUI extends JFrame implements ActionListener{
 
 		dtm = new DefaultTableModel(new Object[] { "Trading Client", "Coin List", "Strategy Name" }, 1);
 		table = new JTable(dtm);
-		// table.setPreferredSize(new Dimension(600, 300));
 		table.setGridColor(new Color(102, 102, 102));
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Trading Client Actions",
@@ -134,17 +99,13 @@ public class MainUI extends JFrame implements ActionListener{
 		
 
 		JPanel east = new JPanel();
-//		east.setLayout();
 		east.setLayout(new BoxLayout(east, BoxLayout.Y_AXIS));
-//		east.add(table);
 		east.add(scrollPane);
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
 		buttons.add(addRow);
 		buttons.add(remRow);
 		east.add(buttons);
-//		east.add(selectedTickerListLabel);
-//		east.add(selectedTickersScrollPane);
 
 		// Set charts region
 		JPanel west = new JPanel();
@@ -233,8 +194,6 @@ public class MainUI extends JFrame implements ActionListener{
 					}
 	        }
 			TradeHandler.getInstance().initiateTrade(brokers, coins, strategies);
-//			DataVisualizationCreator creator = new DataVisualizationCreator();
-//			creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
 			dtm.addRow(new String[3]);
 		} else if ("remTableRow".equals(command)) {

@@ -84,7 +84,7 @@ public class TradeResult {
 	 * @return String price
 	 */
 	public String getPrice() {
-		return Double.toString(price);
+		return String.format("%.2f", price);
 	}
 	
 	/**
